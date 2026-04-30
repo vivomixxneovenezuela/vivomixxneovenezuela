@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
+
   const header = document.querySelector(".site-header");
   const progressBar = document.querySelector(".scroll-progress span");
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelectorAll(".nav-menu a");
-  const revealElements = document.querySelectorAll(".reveal");
   const sections = document.querySelectorAll("main section[id]");
-  const details = document.querySelectorAll(".faq-list details");
+  const revealElements = document.querySelectorAll(".reveal");
+  const faqDetails = document.querySelectorAll(".faq-list details");
 
   const ambientGradient1 = document.querySelector(".ambient-gradient-1");
   const ambientGradient2 = document.querySelector(".ambient-gradient-2");
@@ -41,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateProgressBar() {
     if (!progressBar) return;
 
-    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
 
     progressBar.style.width = `${Math.min(progress, 100)}%`;
   }
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentSectionId = "";
 
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 160;
+      const sectionTop = section.offsetTop - 165;
 
       if (window.scrollY >= sectionTop) {
         currentSectionId = section.getAttribute("id");
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* DEPTH / PARALLAX MOTION */
+  /* DEPTH / PARALLAX */
 
   function updateDepthMotion() {
     if (prefersReducedMotion) return;
@@ -152,21 +153,35 @@ document.addEventListener("DOMContentLoaded", () => {
         translate3d(${Math.cos(normalized) * -18}px, ${scrollY * -0.012}px, 0)
       `;
     }
+  }
 
-    if (heroMedia) {
-      heroMedia.style.transform = `
-        translate3d(0, ${scrollY * -0.018}px, 0)
-      `;
+  let ticking = false;
+
+  function handleScrollEffects() {
+    updateHeader();
+    updateProgressBar();
+    setActiveNavLink();
+    updateDepthMotion();
+    ticking = false;
+  }
+
+  function requestScrollTick() {
+    if (!ticking) {
+      window.requestAnimationFrame(handleScrollEffects);
+      ticking = true;
     }
   }
 
-  /* SUBTLE MOUSE DEPTH ON HERO */
+  window.addEventListener("scroll", requestScrollTick, { passive: true });
+  window.addEventListener("resize", requestScrollTick);
+  handleScrollEffects();
+
+  /* HERO POINTER DEPTH */
 
   function setupHeroPointerDepth() {
     if (prefersReducedMotion || !heroMedia) return;
 
     const heroSection = document.querySelector(".hero-section");
-
     if (!heroSection) return;
 
     heroSection.addEventListener("mousemove", (event) => {
@@ -204,26 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  let ticking = false;
-
-  function handleScrollEffects() {
-    updateHeader();
-    updateProgressBar();
-    setActiveNavLink();
-    updateDepthMotion();
-    ticking = false;
-  }
-
-  function requestScrollTick() {
-    if (!ticking) {
-      window.requestAnimationFrame(handleScrollEffects);
-      ticking = true;
-    }
-  }
-
-  window.addEventListener("scroll", requestScrollTick, { passive: true });
-  window.addEventListener("resize", requestScrollTick);
-  handleScrollEffects();
   setupHeroPointerDepth();
 
   /* MOBILE NAV */
@@ -284,10 +279,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* FAQ ACCORDION */
 
-  details.forEach((targetDetail) => {
+  faqDetails.forEach((targetDetail) => {
     targetDetail.addEventListener("toggle", () => {
       if (targetDetail.open) {
-        details.forEach((detail) => {
+        faqDetails.forEach((detail) => {
           if (detail !== targetDetail) {
             detail.open = false;
           }
@@ -364,6 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const storyCards = document.querySelectorAll(".story-card");
   const storyPrev = document.querySelector(".story-prev");
   const storyNext = document.querySelector(".story-next");
+
   let activeStoryIndex = 0;
 
   function showStory(index) {
