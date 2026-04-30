@@ -28,98 +28,98 @@ document.addEventListener("DOMContentLoaded", () => {
     hero: {
       base: "#062b55",
       a: "rgba(0, 168, 200, 0.34)",
-      b: "rgba(111, 190, 68, 0.22)",
-      c: "rgba(247, 201, 72, 0.16)",
+      b: "rgba(151, 96, 128, 0.28)",
+      c: "rgba(111, 190, 68, 0.16)",
     },
     availability: {
       base: "#f8fdff",
-      a: "rgba(0, 168, 200, 0.18)",
-      b: "rgba(247, 201, 72, 0.22)",
-      c: "rgba(111, 190, 68, 0.12)",
+      a: "rgba(151, 96, 128, 0.18)",
+      b: "rgba(0, 168, 200, 0.18)",
+      c: "rgba(247, 201, 72, 0.14)",
     },
     facts: {
       base: "#ffffff",
       a: "rgba(0, 168, 200, 0.14)",
-      b: "rgba(111, 190, 68, 0.12)",
-      c: "rgba(247, 201, 72, 0.10)",
+      b: "rgba(151, 96, 128, 0.12)",
+      c: "rgba(111, 190, 68, 0.10)",
     },
     soft: {
-      base: "#f1fbff",
-      a: "rgba(0, 168, 200, 0.14)",
-      b: "rgba(111, 190, 68, 0.15)",
-      c: "rgba(247, 201, 72, 0.08)",
+      base: "#f8f2f6",
+      a: "rgba(151, 96, 128, 0.17)",
+      b: "rgba(0, 168, 200, 0.12)",
+      c: "rgba(111, 190, 68, 0.10)",
     },
     difference: {
       base: "#f5fbff",
-      a: "rgba(0, 114, 188, 0.18)",
-      b: "rgba(0, 168, 200, 0.16)",
+      a: "rgba(0, 114, 188, 0.16)",
+      b: "rgba(151, 96, 128, 0.15)",
       c: "rgba(111, 190, 68, 0.10)",
     },
     cold: {
       base: "#062b55",
-      a: "rgba(0, 168, 200, 0.30)",
-      b: "rgba(7, 90, 156, 0.30)",
+      a: "rgba(0, 168, 200, 0.28)",
+      b: "rgba(151, 96, 128, 0.20)",
       c: "rgba(111, 190, 68, 0.12)",
     },
     products: {
       base: "#ffffff",
-      a: "rgba(0, 168, 200, 0.16)",
+      a: "rgba(0, 168, 200, 0.15)",
       b: "rgba(111, 190, 68, 0.13)",
-      c: "rgba(247, 201, 72, 0.10)",
+      c: "rgba(151, 96, 128, 0.10)",
     },
     selector: {
-      base: "#f1fbff",
-      a: "rgba(0, 168, 200, 0.15)",
-      b: "rgba(247, 201, 72, 0.16)",
-      c: "rgba(111, 190, 68, 0.12)",
+      base: "#f8f2f6",
+      a: "rgba(151, 96, 128, 0.16)",
+      b: "rgba(0, 168, 200, 0.14)",
+      c: "rgba(111, 190, 68, 0.10)",
     },
     strains: {
       base: "#f1fbff",
-      a: "rgba(0, 168, 200, 0.20)",
-      b: "rgba(111, 190, 68, 0.18)",
-      c: "rgba(247, 201, 72, 0.10)",
+      a: "rgba(0, 168, 200, 0.18)",
+      b: "rgba(151, 96, 128, 0.15)",
+      c: "rgba(111, 190, 68, 0.14)",
     },
     microbiota: {
       base: "#f1fbff",
-      a: "rgba(111, 190, 68, 0.20)",
-      b: "rgba(0, 168, 200, 0.18)",
-      c: "rgba(247, 201, 72, 0.10)",
+      a: "rgba(111, 190, 68, 0.18)",
+      b: "rgba(151, 96, 128, 0.15)",
+      c: "rgba(0, 168, 200, 0.14)",
     },
     usage: {
       base: "#f8fdff",
-      a: "rgba(0, 114, 188, 0.13)",
-      b: "rgba(0, 168, 200, 0.12)",
-      c: "rgba(111, 190, 68, 0.12)",
+      a: "rgba(0, 114, 188, 0.12)",
+      b: "rgba(151, 96, 128, 0.12)",
+      c: "rgba(111, 190, 68, 0.10)",
     },
     stories: {
-      base: "#f8fdff",
-      a: "rgba(0, 114, 188, 0.18)",
-      b: "rgba(0, 168, 200, 0.14)",
-      c: "rgba(247, 201, 72, 0.16)",
+      base: "#f8f2f6",
+      a: "rgba(151, 96, 128, 0.20)",
+      b: "rgba(0, 168, 200, 0.12)",
+      c: "rgba(247, 201, 72, 0.12)",
     },
     audience: {
       base: "#f8fdff",
-      a: "rgba(0, 168, 200, 0.13)",
-      b: "rgba(111, 190, 68, 0.15)",
-      c: "rgba(247, 201, 72, 0.10)",
+      a: "rgba(0, 168, 200, 0.12)",
+      b: "rgba(151, 96, 128, 0.14)",
+      c: "rgba(111, 190, 68, 0.10)",
     },
     professionals: {
       base: "#062b55",
-      a: "rgba(0, 168, 200, 0.24)",
-      b: "rgba(111, 190, 68, 0.14)",
-      c: "rgba(247, 201, 72, 0.13)",
+      a: "rgba(0, 168, 200, 0.22)",
+      b: "rgba(151, 96, 128, 0.18)",
+      c: "rgba(111, 190, 68, 0.12)",
     },
     faq: {
-      base: "#f1fbff",
-      a: "rgba(0, 168, 200, 0.12)",
-      b: "rgba(111, 190, 68, 0.11)",
-      c: "rgba(247, 201, 72, 0.08)",
+      base: "#f8f2f6",
+      a: "rgba(151, 96, 128, 0.14)",
+      b: "rgba(0, 168, 200, 0.10)",
+      c: "rgba(111, 190, 68, 0.10)",
     },
     contact: {
       base: "#ffffff",
-      a: "rgba(0, 168, 200, 0.16)",
-      b: "rgba(111, 190, 68, 0.16)",
-      c: "rgba(247, 201, 72, 0.12)",
+      a: "rgba(151, 96, 128, 0.16)",
+      b: "rgba(0, 168, 200, 0.14)",
+      c: "rgba(111, 190, 68, 0.12)",
     },
   };
 
@@ -348,12 +348,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const choiceMessages = {
     sobres: {
-      title: "Probablemente te conviene revisar Vivomixx neo® 9 – 460 sobres.",
+      title: "Probablemente te conviene revisar Vivomixx neo 9 – 460 sobres.",
       text:
         "Es la presentación de mayor concentración por toma: 460 mil millones de bacterias vivas por sobre. La dosis diaria recomendada es de 1 sobre. Puede ser útil si priorizas concentración y no te importa mezclarlo con agua, yogur u otra bebida o alimento frío sin gas.",
     },
     capsulas: {
-      title: "Probablemente te conviene revisar Vivomixx neo® 9 – 115 cápsulas.",
+      title: "Probablemente te conviene revisar Vivomixx neo 9 – 115 cápsulas.",
       text:
         "Es una opción más práctica para la rutina diaria: 115 mil millones de bacterias vivas por cápsula. La dosis diaria recomendada es de 1 a 4 cápsulas con un vaso de agua.",
     },
@@ -447,47 +447,47 @@ document.addEventListener("DOMContentLoaded", () => {
     paracasei: {
       title: "Lacticaseibacillus paracasei IMC 502",
       description:
-        "Bacteria láctica utilizada en combinaciones probióticas. En Vivomixx neo® 9 forma parte del conjunto de cepas vivas que acompañan el cuidado de la microbiota intestinal.",
+        "Bacteria láctica utilizada en combinaciones probióticas. En Vivomixx neo 9 forma parte del conjunto de cepas vivas que acompañan el cuidado de la microbiota intestinal.",
     },
     rhamnosus501: {
       title: "Lacticaseibacillus rhamnosus IMC 501",
       description:
-        "Especie de bacteria láctica frecuente en el mundo de los probióticos. En una fórmula multicepa, contribuye al conjunto de microorganismos vivos presentes en Vivomixx neo® 9.",
+        "Especie de bacteria láctica frecuente en el mundo de los probióticos. En una fórmula multicepa, contribuye al conjunto de microorganismos vivos presentes en Vivomixx neo 9.",
     },
     rhamnosussp1: {
       title: "Lacticaseibacillus rhamnosus SP1",
       description:
-        "Otra cepa de Lacticaseibacillus rhamnosus incluida en Vivomixx neo® 9. Su presencia refuerza el enfoque multicepa de la fórmula.",
+        "Otra cepa de Lacticaseibacillus rhamnosus incluida en Vivomixx neo 9. Su presencia refuerza el enfoque multicepa de la fórmula.",
     },
     breve: {
       title: "Bifidobacterium breve Bbr8",
       description:
-        "Pertenece al grupo de las bifidobacterias, microorganismos habituales del ecosistema intestinal. Forma parte de la combinación de cepas vivas de Vivomixx neo® 9.",
+        "Pertenece al grupo de las bifidobacterias, microorganismos habituales del ecosistema intestinal. Forma parte de la combinación de cepas vivas de Vivomixx neo 9.",
     },
     lactis: {
       title: "Bifidobacterium animalis subsp. lactis BLC1",
       description:
-        "Bifidobacteria utilizada en complementos con fermentos probióticos. En Vivomixx neo® 9 se integra dentro de una combinación de bacterias vivas de alta concentración.",
+        "Bifidobacteria utilizada en complementos con fermentos probióticos. En Vivomixx neo 9 se integra dentro de una combinación de bacterias vivas de alta concentración.",
     },
     acidophilus: {
       title: "Lactobacillus acidophilus LA1",
       description:
-        "Lactobacilo ampliamente conocido en productos probióticos y fermentados. En Vivomixx neo® 9 forma parte del conjunto de bacterias vivas de la fórmula.",
+        "Lactobacilo ampliamente conocido en productos probióticos y fermentados. En Vivomixx neo 9 forma parte del conjunto de bacterias vivas de la fórmula.",
     },
     plantarum: {
       title: "Lactiplantibacillus plantarum 14D",
       description:
-        "Bacteria láctica presente en distintos alimentos fermentados y fórmulas probióticas. Se incluye en Vivomixx neo® 9 como parte de su combinación multicepa.",
+        "Bacteria láctica presente en distintos alimentos fermentados y fórmulas probióticas. Se incluye en Vivomixx neo 9 como parte de su combinación multicepa.",
     },
     "lactis-sp38": {
       title: "Lactococcus lactis SP38",
       description:
-        "Bacteria láctica asociada tradicionalmente a procesos de fermentación. En Vivomixx neo® 9 contribuye al perfil de cepas vivas de la fórmula.",
+        "Bacteria láctica asociada tradicionalmente a procesos de fermentación. En Vivomixx neo 9 contribuye al perfil de cepas vivas de la fórmula.",
     },
     thermo: {
       title: "Streptococcus thermophilus SP4",
       description:
-        "Bacteria láctica ampliamente utilizada en fermentaciones alimentarias. En Vivomixx neo® 9 forma parte de la combinación de 9 cepas vivas.",
+        "Bacteria láctica ampliamente utilizada en fermentaciones alimentarias. En Vivomixx neo 9 forma parte de la combinación de 9 cepas vivas.",
     },
   };
 
@@ -551,7 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
     probioticos: {
       title: "Probióticos",
       description:
-        "Los probióticos aportan microorganismos vivos. Vivomixx neo® 9 combina 9 cepas vivas en presentaciones de alta concentración para acompañar el cuidado responsable de la microbiota.",
+        "Los probióticos aportan microorganismos vivos. Vivomixx neo 9 combina 9 cepas vivas en presentaciones de alta concentración para acompañar el cuidado responsable de la microbiota.",
     },
   };
 
