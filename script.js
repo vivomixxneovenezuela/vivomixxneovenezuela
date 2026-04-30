@@ -11,124 +11,121 @@ document.addEventListener("DOMContentLoaded", () => {
   const themedSections = document.querySelectorAll("[data-theme]");
   const details = document.querySelectorAll("details");
 
-  const ambientOne = document.querySelector(".ambient-gradient-one");
-  const ambientTwo = document.querySelector(".ambient-gradient-two");
-  const ambientThree = document.querySelector(".ambient-gradient-three");
-
-  const bioLayerBack = document.querySelector(".bio-layer-back");
-  const bioLayerMid = document.querySelector(".bio-layer-mid");
-  const bioLayerFront = document.querySelector(".bio-layer-front");
-  const bioShapes = document.querySelectorAll(".bio-shape");
+  const bgOrbOne = document.querySelector(".brand-bg-orb-1");
+  const bgOrbTwo = document.querySelector(".brand-bg-orb-2");
+  const bgOrbThree = document.querySelector(".brand-bg-orb-3");
+  const bgSwirlOne = document.querySelector(".brand-bg-swirl-1");
+  const bgSwirlTwo = document.querySelector(".brand-bg-swirl-2");
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* THEME COLORS BY SECTION */
+  /* BRAND THEME COLORS BY SECTION */
 
   const themeMap = {
     hero: {
-      base: "#062b55",
-      a: "rgba(0, 168, 200, 0.34)",
-      b: "rgba(151, 96, 128, 0.28)",
-      c: "rgba(111, 190, 68, 0.16)",
+      base: "#fcf7fa",
+      a: "rgba(168, 117, 144, 0.30)",
+      b: "rgba(0, 168, 200, 0.18)",
+      c: "rgba(111, 190, 68, 0.12)"
     },
     availability: {
-      base: "#f8fdff",
-      a: "rgba(151, 96, 128, 0.18)",
-      b: "rgba(0, 168, 200, 0.18)",
-      c: "rgba(247, 201, 72, 0.14)",
+      base: "#fcf7fa",
+      a: "rgba(168, 117, 144, 0.20)",
+      b: "rgba(247, 201, 72, 0.16)",
+      c: "rgba(0, 168, 200, 0.12)"
     },
     facts: {
       base: "#ffffff",
-      a: "rgba(0, 168, 200, 0.14)",
-      b: "rgba(151, 96, 128, 0.12)",
-      c: "rgba(111, 190, 68, 0.10)",
+      a: "rgba(168, 117, 144, 0.14)",
+      b: "rgba(0, 168, 200, 0.10)",
+      c: "rgba(111, 190, 68, 0.10)"
     },
     soft: {
-      base: "#f8f2f6",
-      a: "rgba(151, 96, 128, 0.17)",
-      b: "rgba(0, 168, 200, 0.12)",
-      c: "rgba(111, 190, 68, 0.10)",
+      base: "#fcf7fa",
+      a: "rgba(168, 117, 144, 0.18)",
+      b: "rgba(0, 168, 200, 0.10)",
+      c: "rgba(111, 190, 68, 0.10)"
     },
     difference: {
-      base: "#f5fbff",
-      a: "rgba(0, 114, 188, 0.16)",
-      b: "rgba(151, 96, 128, 0.15)",
-      c: "rgba(111, 190, 68, 0.10)",
+      base: "#ffffff",
+      a: "rgba(168, 117, 144, 0.16)",
+      b: "rgba(0, 114, 188, 0.12)",
+      c: "rgba(111, 190, 68, 0.08)"
     },
     cold: {
-      base: "#062b55",
-      a: "rgba(0, 168, 200, 0.28)",
-      b: "rgba(151, 96, 128, 0.20)",
-      c: "rgba(111, 190, 68, 0.12)",
+      base: "#f8edf3",
+      a: "rgba(168, 117, 144, 0.22)",
+      b: "rgba(0, 168, 200, 0.15)",
+      c: "rgba(111, 190, 68, 0.10)"
     },
     products: {
       base: "#ffffff",
-      a: "rgba(0, 168, 200, 0.15)",
-      b: "rgba(111, 190, 68, 0.13)",
-      c: "rgba(151, 96, 128, 0.10)",
+      a: "rgba(0, 168, 200, 0.12)",
+      b: "rgba(111, 190, 68, 0.10)",
+      c: "rgba(168, 117, 144, 0.12)"
     },
     selector: {
-      base: "#f8f2f6",
-      a: "rgba(151, 96, 128, 0.16)",
-      b: "rgba(0, 168, 200, 0.14)",
-      c: "rgba(111, 190, 68, 0.10)",
+      base: "#fcf7fa",
+      a: "rgba(168, 117, 144, 0.18)",
+      b: "rgba(0, 168, 200, 0.10)",
+      c: "rgba(247, 201, 72, 0.10)"
     },
     strains: {
-      base: "#f1fbff",
-      a: "rgba(0, 168, 200, 0.18)",
-      b: "rgba(151, 96, 128, 0.15)",
-      c: "rgba(111, 190, 68, 0.14)",
+      base: "#ffffff",
+      a: "rgba(168, 117, 144, 0.18)",
+      b: "rgba(0, 168, 200, 0.12)",
+      c: "rgba(111, 190, 68, 0.10)"
     },
     microbiota: {
-      base: "#f1fbff",
-      a: "rgba(111, 190, 68, 0.18)",
-      b: "rgba(151, 96, 128, 0.15)",
-      c: "rgba(0, 168, 200, 0.14)",
+      base: "#fcf7fa",
+      a: "rgba(168, 117, 144, 0.18)",
+      b: "rgba(111, 190, 68, 0.12)",
+      c: "rgba(0, 168, 200, 0.10)"
     },
     usage: {
-      base: "#f8fdff",
-      a: "rgba(0, 114, 188, 0.12)",
-      b: "rgba(151, 96, 128, 0.12)",
-      c: "rgba(111, 190, 68, 0.10)",
+      base: "#ffffff",
+      a: "rgba(168, 117, 144, 0.14)",
+      b: "rgba(0, 168, 200, 0.10)",
+      c: "rgba(111, 190, 68, 0.08)"
     },
     stories: {
-      base: "#f8f2f6",
-      a: "rgba(151, 96, 128, 0.20)",
-      b: "rgba(0, 168, 200, 0.12)",
-      c: "rgba(247, 201, 72, 0.12)",
+      base: "#fcf7fa",
+      a: "rgba(168, 117, 144, 0.20)",
+      b: "rgba(247, 201, 72, 0.12)",
+      c: "rgba(0, 168, 200, 0.10)"
     },
     audience: {
-      base: "#f8fdff",
-      a: "rgba(0, 168, 200, 0.12)",
-      b: "rgba(151, 96, 128, 0.14)",
-      c: "rgba(111, 190, 68, 0.10)",
+      base: "#ffffff",
+      a: "rgba(168, 117, 144, 0.14)",
+      b: "rgba(0, 168, 200, 0.09)",
+      c: "rgba(111, 190, 68, 0.09)"
     },
     professionals: {
-      base: "#062b55",
-      a: "rgba(0, 168, 200, 0.22)",
-      b: "rgba(151, 96, 128, 0.18)",
-      c: "rgba(111, 190, 68, 0.12)",
+      base: "#f8edf3",
+      a: "rgba(168, 117, 144, 0.20)",
+      b: "rgba(0, 168, 200, 0.12)",
+      c: "rgba(247, 201, 72, 0.10)"
     },
     faq: {
-      base: "#f8f2f6",
-      a: "rgba(151, 96, 128, 0.14)",
-      b: "rgba(0, 168, 200, 0.10)",
-      c: "rgba(111, 190, 68, 0.10)",
+      base: "#fcf7fa",
+      a: "rgba(168, 117, 144, 0.15)",
+      b: "rgba(0, 168, 200, 0.08)",
+      c: "rgba(111, 190, 68, 0.08)"
     },
     contact: {
       base: "#ffffff",
-      a: "rgba(151, 96, 128, 0.16)",
-      b: "rgba(0, 168, 200, 0.14)",
-      c: "rgba(111, 190, 68, 0.12)",
-    },
+      a: "rgba(168, 117, 144, 0.16)",
+      b: "rgba(0, 168, 200, 0.10)",
+      c: "rgba(111, 190, 68, 0.10)"
+    }
   };
 
   let currentTheme = "";
 
   function getCurrentTheme() {
-    if (!themedSections.length) return "products";
+    if (!themedSections.length) return "soft";
 
-    let selectedTheme = themedSections[0].dataset.theme || "products";
+    let selectedTheme = themedSections[0].dataset.theme || "soft";
     const viewportReference = window.scrollY + window.innerHeight * 0.42;
 
     themedSections.forEach((section) => {
@@ -143,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyTheme(themeName) {
     if (themeName === currentTheme) return;
 
-    const theme = themeMap[themeName] || themeMap.products;
+    const theme = themeMap[themeName] || themeMap.soft;
     currentTheme = themeName;
 
     root.style.setProperty("--ambient-base", theme.base);
@@ -167,9 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateProgressBar() {
     if (!progressBar) return;
 
-    const scrollTop = window.scrollY;
     const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = documentHeight > 0 ? (scrollTop / documentHeight) * 100 : 0;
+    const progress = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
 
     progressBar.style.width = `${Math.min(progress, 100)}%`;
   }
@@ -198,55 +194,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* SCROLL DEPTH / PARALLAX */
+  /* BRAND BACKGROUND MOTION */
 
-  function updateAmbientMotion() {
+  function updateBrandMotion() {
     if (prefersReducedMotion) return;
 
     const scrollY = window.scrollY;
     const viewportH = window.innerHeight || 1;
     const normalized = scrollY / viewportH;
 
-    if (ambientOne) {
-      ambientOne.style.transform = `
-        translate3d(${Math.sin(normalized * 1.2) * 34}px, ${scrollY * -0.035}px, 0)
-        scale(${1 + Math.sin(normalized) * 0.035})
+    if (bgOrbOne) {
+      bgOrbOne.style.transform = `
+        translate3d(${Math.sin(normalized * 1.1) * 30}px, ${scrollY * -0.025}px, 0)
+        scale(${1 + Math.sin(normalized) * 0.03})
       `;
     }
 
-    if (ambientTwo) {
-      ambientTwo.style.transform = `
-        translate3d(${Math.cos(normalized * 1.1) * -42}px, ${scrollY * 0.028}px, 0)
-        scale(${1 + Math.cos(normalized) * 0.04})
+    if (bgOrbTwo) {
+      bgOrbTwo.style.transform = `
+        translate3d(${Math.cos(normalized * 1.05) * -36}px, ${scrollY * 0.022}px, 0)
+        scale(${1 + Math.cos(normalized) * 0.035})
       `;
     }
 
-    if (ambientThree) {
-      ambientThree.style.transform = `
-        translate3d(${Math.sin(normalized * 0.8) * 28}px, ${scrollY * 0.045}px, 0)
-        scale(${1 + Math.sin(normalized * 1.4) * 0.03})
+    if (bgOrbThree) {
+      bgOrbThree.style.transform = `
+        translate3d(${Math.sin(normalized * 0.8) * 24}px, ${scrollY * 0.035}px, 0)
+        scale(${1 + Math.sin(normalized * 1.25) * 0.025})
       `;
     }
 
-    if (bioLayerBack) {
-      bioLayerBack.style.transform = `translate3d(0, ${scrollY * 0.025}px, 0)`;
+    if (bgSwirlOne) {
+      bgSwirlOne.style.transform = `
+        translate3d(0, ${scrollY * 0.035}px, 0)
+        rotate(${scrollY * 0.012 - 28}deg)
+      `;
     }
 
-    if (bioLayerMid) {
-      bioLayerMid.style.transform = `translate3d(0, ${scrollY * 0.055}px, 0)`;
+    if (bgSwirlTwo) {
+      bgSwirlTwo.style.transform = `
+        translate3d(0, ${scrollY * -0.025}px, 0)
+        rotate(${scrollY * -0.01 + 24}deg)
+      `;
     }
-
-    if (bioLayerFront) {
-      bioLayerFront.style.transform = `translate3d(0, ${scrollY * 0.09}px, 0)`;
-    }
-
-    bioShapes.forEach((shape, index) => {
-      const drift = Math.sin(scrollY * 0.004 + index) * (6 + (index % 3) * 3);
-      const rotate = scrollY * (0.008 + index * 0.0008);
-
-      shape.style.setProperty("--shape-drift-x", `${drift}px`);
-      shape.style.setProperty("--shape-rotate", `${rotate}deg`);
-    });
   }
 
   let ticking = false;
@@ -256,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateProgressBar();
     setActiveNavLink();
     applyTheme(getCurrentTheme());
-    updateAmbientMotion();
+    updateBrandMotion();
     ticking = false;
   }
 
@@ -314,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         threshold: 0.14,
-        rootMargin: "0px 0px -40px 0px",
+        rootMargin: "0px 0px -40px 0px"
       }
     );
 
@@ -341,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* PRODUCT SELECTOR — VIVOMIXX NEO 460 / 115 */
+  /* PRODUCT SELECTOR */
 
   const choiceButtons = document.querySelectorAll(".choice-btn");
   const choiceResult = document.querySelector(".choice-result");
@@ -350,18 +340,18 @@ document.addEventListener("DOMContentLoaded", () => {
     sobres: {
       title: "Probablemente te conviene revisar Vivomixx neo 9 – 460 sobres.",
       text:
-        "Es la presentación de mayor concentración por toma: 460 mil millones de bacterias vivas por sobre. La dosis diaria recomendada es de 1 sobre. Puede ser útil si priorizas concentración y no te importa mezclarlo con agua, yogur u otra bebida o alimento frío sin gas.",
+        "Es la presentación de mayor concentración por toma: 460 mil millones de bacterias vivas por sobre. La dosis diaria recomendada es de 1 sobre. Puede ser útil si priorizas concentración y no te importa mezclarlo con agua, yogur u otra bebida o alimento frío sin gas."
     },
     capsulas: {
       title: "Probablemente te conviene revisar Vivomixx neo 9 – 115 cápsulas.",
       text:
-        "Es una opción más práctica para la rutina diaria: 115 mil millones de bacterias vivas por cápsula. La dosis diaria recomendada es de 1 a 4 cápsulas con un vaso de agua.",
+        "Es una opción más práctica para la rutina diaria: 115 mil millones de bacterias vivas por cápsula. La dosis diaria recomendada es de 1 a 4 cápsulas con un vaso de agua."
     },
     duda: {
       title: "Lo ideal es elegir según tu caso y rutina.",
       text:
-        "Si no estás seguro, consulta disponibilidad de ambas presentaciones y pregunta a un profesional de salud, especialmente si hay embarazo, lactancia, niños, condiciones médicas, inmunosupresión o uso concomitante con tratamientos.",
-    },
+        "Si no estás seguro, consulta disponibilidad de ambas presentaciones y pregunta a un profesional de salud, especialmente si hay embarazo, lactancia, niños, condiciones médicas, inmunosupresión o uso concomitante con tratamientos."
+    }
   };
 
   choiceButtons.forEach((button) => {
@@ -437,7 +427,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showStory(activeStoryIndex);
 
-  /* STRAIN EXPLORER — 9 CEPAS VIVOMIXX NEO */
+  /* STRAIN EXPLORER */
 
   const strainButtons = document.querySelectorAll(".strain-node");
   const strainTitle = document.querySelector("#strain-title");
@@ -447,48 +437,48 @@ document.addEventListener("DOMContentLoaded", () => {
     paracasei: {
       title: "Lacticaseibacillus paracasei IMC 502",
       description:
-        "Bacteria láctica utilizada en combinaciones probióticas. En Vivomixx neo 9 forma parte del conjunto de cepas vivas que acompañan el cuidado de la microbiota intestinal.",
+        "Bacteria láctica utilizada en combinaciones probióticas. En Vivomixx neo 9 forma parte del conjunto de cepas vivas que acompañan el cuidado de la microbiota intestinal."
     },
     rhamnosus501: {
       title: "Lacticaseibacillus rhamnosus IMC 501",
       description:
-        "Especie de bacteria láctica frecuente en el mundo de los probióticos. En una fórmula multicepa, contribuye al conjunto de microorganismos vivos presentes en Vivomixx neo 9.",
+        "Especie de bacteria láctica frecuente en el mundo de los probióticos. En una fórmula multicepa, contribuye al conjunto de microorganismos vivos presentes en Vivomixx neo 9."
     },
     rhamnosussp1: {
       title: "Lacticaseibacillus rhamnosus SP1",
       description:
-        "Otra cepa de Lacticaseibacillus rhamnosus incluida en Vivomixx neo 9. Su presencia refuerza el enfoque multicepa de la fórmula.",
+        "Otra cepa de Lacticaseibacillus rhamnosus incluida en Vivomixx neo 9. Su presencia refuerza el enfoque multicepa de la fórmula."
     },
     breve: {
       title: "Bifidobacterium breve Bbr8",
       description:
-        "Pertenece al grupo de las bifidobacterias, microorganismos habituales del ecosistema intestinal. Forma parte de la combinación de cepas vivas de Vivomixx neo 9.",
+        "Pertenece al grupo de las bifidobacterias, microorganismos habituales del ecosistema intestinal. Forma parte de la combinación de cepas vivas de Vivomixx neo 9."
     },
     lactis: {
       title: "Bifidobacterium animalis subsp. lactis BLC1",
       description:
-        "Bifidobacteria utilizada en complementos con fermentos probióticos. En Vivomixx neo 9 se integra dentro de una combinación de bacterias vivas de alta concentración.",
+        "Bifidobacteria utilizada en complementos con fermentos probióticos. En Vivomixx neo 9 se integra dentro de una combinación de bacterias vivas de alta concentración."
     },
     acidophilus: {
       title: "Lactobacillus acidophilus LA1",
       description:
-        "Lactobacilo ampliamente conocido en productos probióticos y fermentados. En Vivomixx neo 9 forma parte del conjunto de bacterias vivas de la fórmula.",
+        "Lactobacilo ampliamente conocido en productos probióticos y fermentados. En Vivomixx neo 9 forma parte del conjunto de bacterias vivas de la fórmula."
     },
     plantarum: {
       title: "Lactiplantibacillus plantarum 14D",
       description:
-        "Bacteria láctica presente en distintos alimentos fermentados y fórmulas probióticas. Se incluye en Vivomixx neo 9 como parte de su combinación multicepa.",
+        "Bacteria láctica presente en distintos alimentos fermentados y fórmulas probióticas. Se incluye en Vivomixx neo 9 como parte de su combinación multicepa."
     },
     "lactis-sp38": {
       title: "Lactococcus lactis SP38",
       description:
-        "Bacteria láctica asociada tradicionalmente a procesos de fermentación. En Vivomixx neo 9 contribuye al perfil de cepas vivas de la fórmula.",
+        "Bacteria láctica asociada tradicionalmente a procesos de fermentación. En Vivomixx neo 9 contribuye al perfil de cepas vivas de la fórmula."
     },
     thermo: {
       title: "Streptococcus thermophilus SP4",
       description:
-        "Bacteria láctica ampliamente utilizada en fermentaciones alimentarias. En Vivomixx neo 9 forma parte de la combinación de 9 cepas vivas.",
-    },
+        "Bacteria láctica ampliamente utilizada en fermentaciones alimentarias. En Vivomixx neo 9 forma parte de la combinación de 9 cepas vivas."
+    }
   };
 
   function updateStrain(strainKey) {
@@ -526,33 +516,33 @@ document.addEventListener("DOMContentLoaded", () => {
     alimentacion: {
       title: "Alimentación",
       description:
-        "Una alimentación variada aporta sustratos y nutrientes que influyen en la composición de la microbiota intestinal. La dieta es una de las formas más importantes de cuidar este ecosistema.",
+        "Una alimentación variada aporta sustratos y nutrientes que influyen en la composición de la microbiota intestinal. La dieta es una de las formas más importantes de cuidar este ecosistema."
     },
     rutina: {
       title: "Rutina",
       description:
-        "Los hábitos diarios, los horarios, el descanso y la regularidad pueden influir en el bienestar digestivo. Cuidar la microbiota suele ser parte de una rutina constante, no de una acción aislada.",
+        "Los hábitos diarios, los horarios, el descanso y la regularidad pueden influir en el bienestar digestivo. Cuidar la microbiota suele ser parte de una rutina constante, no de una acción aislada."
     },
     estres: {
       title: "Estrés",
       description:
-        "El estrés puede relacionarse con cambios en la percepción digestiva y en los hábitos de alimentación, sueño y rutina. Por eso el bienestar intestinal también se conecta con el estilo de vida.",
+        "El estrés puede relacionarse con cambios en la percepción digestiva y en los hábitos de alimentación, sueño y rutina. Por eso el bienestar intestinal también se conecta con el estilo de vida."
     },
     edad: {
       title: "Edad",
       description:
-        "La microbiota puede cambiar a lo largo de la vida. Por eso muchas personas buscan apoyar su equilibrio intestinal en distintas etapas y momentos de cambio.",
+        "La microbiota puede cambiar a lo largo de la vida. Por eso muchas personas buscan apoyar su equilibrio intestinal en distintas etapas y momentos de cambio."
     },
     tratamientos: {
       title: "Tratamientos",
       description:
-        "Algunos tratamientos pueden influir en la microbiota. Si estás tomando medicamentos o tienes una condición médica, consulta con un profesional de salud antes de usar complementos alimenticios.",
+        "Algunos tratamientos pueden influir en la microbiota. Si estás tomando medicamentos o tienes una condición médica, consulta con un profesional de salud antes de usar complementos alimenticios."
     },
     probioticos: {
       title: "Probióticos",
       description:
-        "Los probióticos aportan microorganismos vivos. Vivomixx neo 9 combina 9 cepas vivas en presentaciones de alta concentración para acompañar el cuidado responsable de la microbiota.",
-    },
+        "Los probióticos aportan microorganismos vivos. Vivomixx neo 9 combina 9 cepas vivas en presentaciones de alta concentración para acompañar el cuidado responsable de la microbiota."
+    }
   };
 
   function updateMicrobiota(microKey) {
