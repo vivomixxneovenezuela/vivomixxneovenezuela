@@ -2872,3 +2872,416 @@ details p {
     opacity: 0.2;
   }
 }
+/* =========================================================
+   VIVOMIXX NEO — BRAND MOMENT + STRAIN FIX
+   Add this block at the END of styles.css
+========================================================= */
+
+/* BRAND MOMENT / FOTO HUMANA */
+
+.brand-moment-section {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(151, 96, 128, 0.16), transparent 34%),
+    radial-gradient(circle at 88% 60%, rgba(0, 168, 200, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(248, 242, 246, 0.72));
+}
+
+.brand-moment-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.brand-moment-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 42px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.72), transparent 38%),
+    #f6eef3;
+  box-shadow: var(--shadow-strong);
+}
+
+.brand-moment-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.brand-moment-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(151, 96, 128, 0.14), transparent 42%),
+    radial-gradient(circle at 86% 16%, rgba(255, 255, 255, 0.34), transparent 24%);
+  pointer-events: none;
+}
+
+.brand-swirl {
+  position: absolute;
+  right: -76px;
+  bottom: -76px;
+  z-index: 2;
+  width: 265px;
+  height: 265px;
+  border: 28px solid rgba(151, 96, 128, 0.34);
+  border-left-color: transparent;
+  border-bottom-color: rgba(151, 96, 128, 0.2);
+  border-radius: 50%;
+  transform: rotate(-24deg);
+  pointer-events: none;
+}
+
+.brand-swirl::after {
+  content: "";
+  position: absolute;
+  inset: 46px;
+  border: 18px solid rgba(255, 255, 255, 0.44);
+  border-left-color: transparent;
+  border-radius: 50%;
+}
+
+/* BUTTON INSIDE COPY */
+
+.section-copy .btn {
+  width: fit-content;
+  margin-top: 12px;
+}
+
+/* =========================================================
+   9 CEPAS — DESKTOP ORBIT FIX
+========================================================= */
+
+.strain-wheel {
+  position: relative;
+  min-height: 700px;
+  border-radius: 44px;
+  overflow: hidden;
+}
+
+/* Center fixed and visually stable */
+
+.strain-center {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 176px;
+  height: 176px;
+  padding: 22px;
+  border-radius: 999px;
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(145deg, #0b5d95 0%, #00a6c9 100%);
+  box-shadow:
+    0 28px 60px rgba(0, 114, 188, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: translate(-50%, -50%);
+}
+
+.strain-center strong {
+  display: block;
+  color: #ffffff;
+  font-family: "Manrope", "Inter", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  text-align: center;
+}
+
+.strain-center span {
+  display: block;
+  max-width: 120px;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.15;
+  text-align: center;
+}
+
+/* Rings */
+
+.strain-ring.ring-outer {
+  inset: 11%;
+}
+
+.strain-ring.ring-inner {
+  inset: 30%;
+}
+
+/* Pills */
+
+.strain-node {
+  width: 190px;
+  min-height: 48px;
+  padding: 11px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  line-height: 1.12;
+  text-align: center;
+  white-space: normal;
+}
+
+/* Reset old transform behavior more safely */
+
+.strain-node:hover,
+.strain-node.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+  box-shadow: 0 18px 42px rgba(0, 114, 188, 0.2);
+}
+
+/* Clean 9-point distribution */
+
+.node-1 {
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.node-2 {
+  top: 14%;
+  right: 8%;
+  transform: none;
+}
+
+.node-3 {
+  top: 36%;
+  right: 3%;
+  transform: none;
+}
+
+.node-4 {
+  bottom: 22%;
+  right: 7%;
+  transform: none;
+}
+
+.node-5 {
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.node-6 {
+  bottom: 14%;
+  left: 13%;
+  transform: none;
+}
+
+.node-7 {
+  top: 56%;
+  left: 4%;
+  transform: none;
+}
+
+.node-8 {
+  top: 28%;
+  left: 5%;
+  transform: none;
+}
+
+.node-9 {
+  top: 13%;
+  left: 22%;
+  transform: none;
+}
+
+/* Hover without breaking special centered nodes */
+
+.node-1:hover,
+.node-1.active {
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.node-5:hover,
+.node-5.active {
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.node-2:hover,
+.node-2.active,
+.node-3:hover,
+.node-3.active,
+.node-4:hover,
+.node-4.active,
+.node-6:hover,
+.node-6.active,
+.node-7:hover,
+.node-7.active,
+.node-8:hover,
+.node-8.active,
+.node-9:hover,
+.node-9.active {
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   IMAGE SAFETY
+========================================================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-product,
+.product-image-wrap img,
+.brand img,
+.footer img,
+.brand-moment-image img {
+  object-fit: contain;
+}
+
+/* Product images should never stretch */
+
+.product-image-wrap img {
+  width: auto;
+  max-width: 100%;
+  max-height: 300px;
+  height: auto;
+}
+
+/* Hero product packshots */
+
+.hero-product {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+/* =========================================================
+   RESPONSIVE FIXES
+========================================================= */
+
+@media (max-width: 1120px) {
+  .brand-moment-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .brand-moment-image {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 880px) {
+  .brand-moment-section {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  .brand-moment-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .brand-moment-image {
+    border-radius: 30px;
+  }
+
+  .brand-swirl {
+    width: 180px;
+    height: 180px;
+    right: -48px;
+    bottom: -48px;
+    border-width: 20px;
+  }
+
+  .brand-swirl::after {
+    inset: 32px;
+    border-width: 13px;
+  }
+
+  .section-copy .btn {
+    width: 100%;
+  }
+
+  /* On mobile, convert the strain orbit into a clean stacked list */
+  .strain-wheel {
+    min-height: auto;
+    display: grid;
+    gap: 10px;
+    padding: 24px;
+  }
+
+  .strain-ring {
+    display: none;
+  }
+
+  .strain-center,
+  .strain-node {
+    position: static;
+    transform: none !important;
+  }
+
+  .strain-center {
+    width: 100%;
+    height: auto;
+    min-height: 112px;
+    border-radius: 28px;
+    order: -1;
+  }
+
+  .strain-center strong {
+    font-size: 2rem;
+  }
+
+  .strain-center span {
+    max-width: none;
+  }
+
+  .strain-node {
+    width: 100%;
+    max-width: none;
+    min-height: 48px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+
+  .strain-node:hover,
+  .strain-node.active {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-moment-image {
+    border-radius: 24px;
+  }
+
+  .brand-swirl {
+    width: 145px;
+    height: 145px;
+    right: -42px;
+    bottom: -42px;
+    border-width: 16px;
+  }
+
+  .brand-swirl::after {
+    inset: 26px;
+    border-width: 10px;
+  }
+
+  .strain-center {
+    min-height: 104px;
+  }
+
+  .strain-center strong {
+    font-size: 1.75rem;
+  }
+
+  .strain-center span {
+    font-size: 0.85rem;
+  }
+}
