@@ -13,110 +13,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const bgOrbOne = document.querySelector(".brand-bg-orb-1");
   const bgOrbTwo = document.querySelector(".brand-bg-orb-2");
-  const bgOrbThree = document.querySelector(".brand-bg-orb-3");
-  const bgSwirlOne = document.querySelector(".brand-bg-swirl-1");
-  const bgSwirlTwo = document.querySelector(".brand-bg-swirl-2");
+  const bgSpiresOne = document.querySelector(".brand-bg-spires-1");
+  const bgSpiresTwo = document.querySelector(".brand-bg-spires-2");
+  const heroSpiresMain = document.querySelector(".hero-spires-main");
+  const heroSpiresSoft = document.querySelector(".hero-spires-soft");
+  const heroProductSpires = document.querySelector(".hero-product-spires");
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* BRAND THEME COLORS BY SECTION */
+  /* SECTION THEME */
 
   const themeMap = {
     hero: {
-      base: "#fcf7fa",
-      a: "rgba(168, 117, 144, 0.30)",
-      b: "rgba(0, 168, 200, 0.18)",
-      c: "rgba(111, 190, 68, 0.12)"
+      base: "#fbf7fd",
+      a: "rgba(165, 134, 189, 0.28)",
+      b: "rgba(104, 198, 224, 0.18)",
+      c: "rgba(143, 191, 33, 0.12)"
     },
     availability: {
-      base: "#fcf7fa",
-      a: "rgba(168, 117, 144, 0.20)",
-      b: "rgba(247, 201, 72, 0.16)",
-      c: "rgba(0, 168, 200, 0.12)"
+      base: "#fbf7fd",
+      a: "rgba(165, 134, 189, 0.20)",
+      b: "rgba(243, 231, 94, 0.16)",
+      c: "rgba(104, 198, 224, 0.12)"
     },
     facts: {
       base: "#ffffff",
-      a: "rgba(168, 117, 144, 0.14)",
-      b: "rgba(0, 168, 200, 0.10)",
-      c: "rgba(111, 190, 68, 0.10)"
+      a: "rgba(165, 134, 189, 0.14)",
+      b: "rgba(104, 198, 224, 0.10)",
+      c: "rgba(143, 191, 33, 0.10)"
     },
     soft: {
-      base: "#fcf7fa",
-      a: "rgba(168, 117, 144, 0.18)",
-      b: "rgba(0, 168, 200, 0.10)",
-      c: "rgba(111, 190, 68, 0.10)"
+      base: "#fbf7fd",
+      a: "rgba(165, 134, 189, 0.18)",
+      b: "rgba(104, 198, 224, 0.10)",
+      c: "rgba(143, 191, 33, 0.10)"
     },
     difference: {
       base: "#ffffff",
-      a: "rgba(168, 117, 144, 0.16)",
-      b: "rgba(0, 114, 188, 0.12)",
-      c: "rgba(111, 190, 68, 0.08)"
+      a: "rgba(165, 134, 189, 0.16)",
+      b: "rgba(104, 198, 224, 0.12)",
+      c: "rgba(143, 191, 33, 0.08)"
     },
     cold: {
-      base: "#f8edf3",
-      a: "rgba(168, 117, 144, 0.22)",
-      b: "rgba(0, 168, 200, 0.15)",
-      c: "rgba(111, 190, 68, 0.10)"
+      base: "#f4edf8",
+      a: "rgba(165, 134, 189, 0.22)",
+      b: "rgba(104, 198, 224, 0.15)",
+      c: "rgba(143, 191, 33, 0.10)"
     },
     products: {
       base: "#ffffff",
-      a: "rgba(0, 168, 200, 0.12)",
-      b: "rgba(111, 190, 68, 0.10)",
-      c: "rgba(168, 117, 144, 0.12)"
+      a: "rgba(104, 198, 224, 0.13)",
+      b: "rgba(143, 191, 33, 0.11)",
+      c: "rgba(165, 134, 189, 0.12)"
     },
     selector: {
-      base: "#fcf7fa",
-      a: "rgba(168, 117, 144, 0.18)",
-      b: "rgba(0, 168, 200, 0.10)",
-      c: "rgba(247, 201, 72, 0.10)"
+      base: "#fbf7fd",
+      a: "rgba(165, 134, 189, 0.18)",
+      b: "rgba(104, 198, 224, 0.10)",
+      c: "rgba(243, 231, 94, 0.10)"
     },
     strains: {
       base: "#ffffff",
-      a: "rgba(168, 117, 144, 0.18)",
-      b: "rgba(0, 168, 200, 0.12)",
-      c: "rgba(111, 190, 68, 0.10)"
+      a: "rgba(165, 134, 189, 0.18)",
+      b: "rgba(104, 198, 224, 0.12)",
+      c: "rgba(143, 191, 33, 0.10)"
     },
     microbiota: {
-      base: "#fcf7fa",
-      a: "rgba(168, 117, 144, 0.18)",
-      b: "rgba(111, 190, 68, 0.12)",
-      c: "rgba(0, 168, 200, 0.10)"
+      base: "#fbf7fd",
+      a: "rgba(165, 134, 189, 0.18)",
+      b: "rgba(143, 191, 33, 0.12)",
+      c: "rgba(104, 198, 224, 0.10)"
     },
     usage: {
       base: "#ffffff",
-      a: "rgba(168, 117, 144, 0.14)",
-      b: "rgba(0, 168, 200, 0.10)",
-      c: "rgba(111, 190, 68, 0.08)"
+      a: "rgba(165, 134, 189, 0.14)",
+      b: "rgba(104, 198, 224, 0.10)",
+      c: "rgba(143, 191, 33, 0.08)"
     },
     stories: {
-      base: "#fcf7fa",
-      a: "rgba(168, 117, 144, 0.20)",
-      b: "rgba(247, 201, 72, 0.12)",
-      c: "rgba(0, 168, 200, 0.10)"
+      base: "#fbf7fd",
+      a: "rgba(165, 134, 189, 0.20)",
+      b: "rgba(243, 231, 94, 0.12)",
+      c: "rgba(104, 198, 224, 0.10)"
     },
     audience: {
       base: "#ffffff",
-      a: "rgba(168, 117, 144, 0.14)",
-      b: "rgba(0, 168, 200, 0.09)",
-      c: "rgba(111, 190, 68, 0.09)"
+      a: "rgba(165, 134, 189, 0.14)",
+      b: "rgba(104, 198, 224, 0.09)",
+      c: "rgba(143, 191, 33, 0.09)"
     },
     professionals: {
-      base: "#f8edf3",
-      a: "rgba(168, 117, 144, 0.20)",
-      b: "rgba(0, 168, 200, 0.12)",
-      c: "rgba(247, 201, 72, 0.10)"
+      base: "#f4edf8",
+      a: "rgba(165, 134, 189, 0.20)",
+      b: "rgba(104, 198, 224, 0.12)",
+      c: "rgba(243, 231, 94, 0.10)"
     },
     faq: {
-      base: "#fcf7fa",
-      a: "rgba(168, 117, 144, 0.15)",
-      b: "rgba(0, 168, 200, 0.08)",
-      c: "rgba(111, 190, 68, 0.08)"
+      base: "#fbf7fd",
+      a: "rgba(165, 134, 189, 0.15)",
+      b: "rgba(104, 198, 224, 0.08)",
+      c: "rgba(143, 191, 33, 0.08)"
     },
     contact: {
       base: "#ffffff",
-      a: "rgba(168, 117, 144, 0.16)",
-      b: "rgba(0, 168, 200, 0.10)",
-      c: "rgba(111, 190, 68, 0.10)"
+      a: "rgba(165, 134, 189, 0.16)",
+      b: "rgba(104, 198, 224, 0.10)",
+      c: "rgba(143, 191, 33, 0.10)"
     }
   };
 
@@ -194,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* BRAND BACKGROUND MOTION */
+  /* BRAND SPIRES MOTION */
 
   function updateBrandMotion() {
     if (prefersReducedMotion) return;
@@ -205,36 +207,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (bgOrbOne) {
       bgOrbOne.style.transform = `
-        translate3d(${Math.sin(normalized * 1.1) * 30}px, ${scrollY * -0.025}px, 0)
+        translate3d(${Math.sin(normalized * 1.1) * 28}px, ${scrollY * -0.025}px, 0)
         scale(${1 + Math.sin(normalized) * 0.03})
       `;
     }
 
     if (bgOrbTwo) {
       bgOrbTwo.style.transform = `
-        translate3d(${Math.cos(normalized * 1.05) * -36}px, ${scrollY * 0.022}px, 0)
+        translate3d(${Math.cos(normalized * 1.05) * -34}px, ${scrollY * 0.022}px, 0)
         scale(${1 + Math.cos(normalized) * 0.035})
       `;
     }
 
-    if (bgOrbThree) {
-      bgOrbThree.style.transform = `
-        translate3d(${Math.sin(normalized * 0.8) * 24}px, ${scrollY * 0.035}px, 0)
-        scale(${1 + Math.sin(normalized * 1.25) * 0.025})
+    if (bgSpiresOne) {
+      bgSpiresOne.style.transform = `
+        translate3d(${Math.sin(normalized) * 18}px, ${scrollY * 0.035}px, 0)
+        rotate(${-18 + scrollY * 0.006}deg)
       `;
     }
 
-    if (bgSwirlOne) {
-      bgSwirlOne.style.transform = `
-        translate3d(0, ${scrollY * 0.035}px, 0)
-        rotate(${scrollY * 0.012 - 28}deg)
+    if (bgSpiresTwo) {
+      bgSpiresTwo.style.transform = `
+        translate3d(${Math.cos(normalized) * -18}px, ${scrollY * -0.025}px, 0)
+        rotate(${20 - scrollY * 0.005}deg)
       `;
     }
 
-    if (bgSwirlTwo) {
-      bgSwirlTwo.style.transform = `
-        translate3d(0, ${scrollY * -0.025}px, 0)
-        rotate(${scrollY * -0.01 + 24}deg)
+    if (heroSpiresMain) {
+      heroSpiresMain.style.transform = `
+        translate3d(0, ${scrollY * 0.018}px, 0)
+        rotate(${18 + scrollY * 0.004}deg)
+      `;
+    }
+
+    if (heroSpiresSoft) {
+      heroSpiresSoft.style.transform = `
+        translate3d(0, ${scrollY * -0.014}px, 0)
+        rotate(${-22 - scrollY * 0.004}deg)
+      `;
+    }
+
+    if (heroProductSpires) {
+      heroProductSpires.style.transform = `
+        translate3d(0, ${Math.sin(normalized * 1.4) * 10}px, 0)
+        rotate(${-12 + Math.sin(normalized) * 2}deg)
       `;
     }
   }
