@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* THEME COLORS BY SECTION */
-
   const themeMap = {
     hero: {
       base: "#3d2843",
@@ -147,8 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
     root.style.setProperty("--ambient-c", theme.c);
   }
 
-  /* HEADER + PROGRESS + ACTIVE NAV */
-
   function updateHeader() {
     if (!header) return;
 
@@ -183,8 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
       link.classList.toggle("active", href === `#${currentSectionId}`);
     });
   }
-
-  /* SCROLL DEPTH / PARALLAX */
 
   function updateAmbientMotion() {
     if (prefersReducedMotion) return;
@@ -255,8 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", requestScrollTick);
   handleScrollEffects();
 
-  /* MOBILE NAV */
-
   if (navToggle) {
     navToggle.addEventListener("click", () => {
       const isOpen = body.classList.toggle("menu-open");
@@ -284,8 +276,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* REVEAL ANIMATIONS */
-
   if ("IntersectionObserver" in window && !prefersReducedMotion) {
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -311,8 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* FAQ ACCORDION */
-
   details.forEach((targetDetail) => {
     targetDetail.addEventListener("toggle", () => {
       if (targetDetail.open) {
@@ -324,8 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
-  /* PRODUCT SELECTOR — VIVOMIXX NEO 460 / 115 */
 
   const choiceButtons = document.querySelectorAll(".choice-btn");
   const choiceResult = document.querySelector(".choice-result");
@@ -344,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
     duda: {
       title: "Puedes elegir según tu rutina y orientación profesional.",
       text:
-        "Si no estás seguro, consulta disponibilidad de ambas presentaciones y pregunta a un profesional de salud, especialmente en embarazo, lactancia, niños, condiciones médicas, inmunosupresión o uso concomitante con tratamientos.",
+        "Si no estás seguro, consulta disponibilidad de ambas presentaciones y pregunta a un profesional de salud, especialmente en embarazo, lactancia, niños, condiciones médicas, inmunosupresión o si estás siguiendo algún tratamiento.",
     },
   };
 
@@ -366,34 +352,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* USAGE TABS */
-
   const tabButtons = document.querySelectorAll(".tab-btn");
   const tabPanels = document.querySelectorAll(".tab-panel");
 
+  function activateTab(selectedTab, selectedButton) {
+    tabButtons.forEach((tabButton) => {
+      const isActive = tabButton === selectedButton;
+      tabButton.classList.toggle("active", isActive);
+      tabButton.setAttribute("aria-selected", String(isActive));
+      tabButton.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+    tabPanels.forEach((panel) => {
+      const isActive = panel.id === `tab-${selectedTab}`;
+      panel.classList.toggle("active", isActive);
+      panel.toggleAttribute("hidden", !isActive);
+    });
+  }
+
   tabButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const selectedTab = button.dataset.tab;
+      activateTab(button.dataset.tab, button);
+    });
 
-      tabButtons.forEach((tabButton) => {
-        const isActive = tabButton === button;
-        tabButton.classList.toggle("active", isActive);
-        tabButton.setAttribute("aria-selected", String(isActive));
-      });
+    button.addEventListener("keydown", (event) => {
+      const buttons = Array.from(tabButtons);
+      const currentIndex = buttons.indexOf(button);
 
-      tabPanels.forEach((panel) => {
-        const isActive = panel.id === `tab-${selectedTab}`;
-        panel.classList.toggle("active", isActive);
-        panel.toggleAttribute("hidden", !isActive);
-      });
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+
+      event.preventDefault();
+
+      const nextIndex =
+        event.key === "ArrowRight"
+          ? (currentIndex + 1) % buttons.length
+          : (currentIndex - 1 + buttons.length) % buttons.length;
+
+      const nextButton = buttons[nextIndex];
+      nextButton.focus();
+      activateTab(nextButton.dataset.tab, nextButton);
     });
   });
 
   tabPanels.forEach((panel) => {
     panel.toggleAttribute("hidden", !panel.classList.contains("active"));
   });
-
-  /* STRAIN EXPLORER — 9 CEPAS VIVOMIXX NEO */
 
   const strainButtons = document.querySelectorAll(".strain-node");
   const strainTitle = document.querySelector("#strain-title");
@@ -473,8 +476,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (strainButtons.length) {
     updateStrain("paracasei");
   }
-
-  /* MICROBIOTA INTERACTIVE */
 
   const microButtons = document.querySelectorAll(".micro-chip");
   const microTitle = document.querySelector("#micro-title");
