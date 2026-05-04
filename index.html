@@ -459,38 +459,34 @@
       </div>
     </section>
 
-    <section id="cepas" class="section strain-section" data-theme="strains">
+    <section id="cepas" class="section strain-section" data-theme="strains" aria-labelledby="strains-title">
       <div class="container section-intro reveal">
         <div class="eyebrow">9 cepas vivas</div>
-        <h2>Composición de Vivomixx neo® 9, organizada por grupos</h2>
+        <h2 id="strains-title">La composición de Vivomixx neo® 9, organizada por grupos</h2>
         <p>
-          Vivomixx neo® 9 combina bacterias lácticas y bifidobacterias vivas. Explora cada grupo y selecciona una cepa
-          para verla con más claridad, sin perder la estructura completa de la fórmula.
+          Vivomixx neo® 9 combina bacterias lácticas y bifidobacterias vivas. Explora cada grupo
+          y selecciona una cepa para ver su información de forma clara y educativa.
         </p>
       </div>
 
       <div class="container strain-structure reveal">
-        <div class="strain-structure-header">
-          <div>
-            <span class="structure-kicker">Fórmula multicepa</span>
-            <h3>2 grupos principales, 9 cepas en total</h3>
-          </div>
-
-          <div class="structure-total" aria-label="Total de cepas">
-            <strong>9</strong>
-            <span>cepas vivas</span>
+        <div class="strain-structure-header" aria-label="Resumen de composición Vivomixx neo® 9">
+          <div class="strain-structure-kicker">Fórmula multicepa</div>
+          <div class="strain-structure-title">
+            <strong>2 grupos principales</strong>
+            <span>9 cepas en total</span>
           </div>
         </div>
 
-        <div class="strain-group-tabs" role="tablist" aria-label="Grupos de cepas de Vivomixx neo 9">
+        <div class="strain-group-tabs" role="tablist" aria-label="Grupos de cepas">
           <button
             type="button"
             class="strain-group-tab active"
-            id="tab-lactic"
-            data-group="lactic"
+            id="tab-lacticas"
             role="tab"
             aria-selected="true"
-            aria-controls="panel-lactic"
+            aria-controls="panel-lacticas"
+            data-group="lacticas"
           >
             <span>Bacterias lácticas</span>
             <strong>7 cepas</strong>
@@ -500,108 +496,107 @@
             type="button"
             class="strain-group-tab"
             id="tab-bifido"
-            data-group="bifido"
             role="tab"
             aria-selected="false"
             aria-controls="panel-bifido"
-            tabindex="-1"
+            data-group="bifido"
           >
             <span>Bifidobacterias</span>
             <strong>2 cepas</strong>
           </button>
         </div>
 
-        <div class="strain-structure-body">
-          <div class="strain-list-panel">
-            <div
+        <div class="strain-program">
+          <div class="strain-program-map" aria-label="Listado interactivo de cepas">
+            <section
               class="strain-group-panel active"
-              id="panel-lactic"
-              data-group-panel="lactic"
+              id="panel-lacticas"
               role="tabpanel"
-              aria-labelledby="tab-lactic"
+              aria-labelledby="tab-lacticas"
+              data-group-panel="lacticas"
             >
-              <div class="strain-panel-heading">
+              <div class="strain-group-heading">
                 <span>Bacterias lácticas</span>
                 <strong>7 cepas dentro de Vivomixx neo® 9</strong>
               </div>
 
-              <div class="strain-row-list" role="list">
-                <button type="button" class="strain-row active" data-strain="paracasei" role="listitem">
-                  <span class="strain-index">01</span>
-                  <span class="strain-name">Lacticaseibacillus paracasei IMC 502</span>
+              <div class="strain-list">
+                <button type="button" class="strain-item active" data-strain="paracasei">
+                  <span>01</span>
+                  <strong>Lacticaseibacillus paracasei IMC 502</strong>
                 </button>
 
-                <button type="button" class="strain-row" data-strain="rhamnosus501" role="listitem">
-                  <span class="strain-index">02</span>
-                  <span class="strain-name">Lacticaseibacillus rhamnosus IMC 501</span>
+                <button type="button" class="strain-item" data-strain="rhamnosus501">
+                  <span>02</span>
+                  <strong>Lacticaseibacillus rhamnosus IMC 501</strong>
                 </button>
 
-                <button type="button" class="strain-row" data-strain="rhamnosussp1" role="listitem">
-                  <span class="strain-index">03</span>
-                  <span class="strain-name">Lacticaseibacillus rhamnosus SP1</span>
+                <button type="button" class="strain-item" data-strain="rhamnosussp1">
+                  <span>03</span>
+                  <strong>Lacticaseibacillus rhamnosus SP1</strong>
                 </button>
 
-                <button type="button" class="strain-row" data-strain="acidophilus" role="listitem">
-                  <span class="strain-index">06</span>
-                  <span class="strain-name">Lactobacillus acidophilus LA1</span>
+                <button type="button" class="strain-item" data-strain="acidophilus">
+                  <span>06</span>
+                  <strong>Lactobacillus acidophilus LA1</strong>
                 </button>
 
-                <button type="button" class="strain-row" data-strain="plantarum" role="listitem">
-                  <span class="strain-index">07</span>
-                  <span class="strain-name">Lactiplantibacillus plantarum 14D</span>
+                <button type="button" class="strain-item" data-strain="plantarum">
+                  <span>07</span>
+                  <strong>Lactiplantibacillus plantarum 14D</strong>
                 </button>
 
-                <button type="button" class="strain-row" data-strain="lactis-sp38" role="listitem">
-                  <span class="strain-index">08</span>
-                  <span class="strain-name">Lactococcus lactis SP38</span>
+                <button type="button" class="strain-item" data-strain="lactis-sp38">
+                  <span>08</span>
+                  <strong>Lactococcus lactis SP38</strong>
                 </button>
 
-                <button type="button" class="strain-row" data-strain="thermo" role="listitem">
-                  <span class="strain-index">09</span>
-                  <span class="strain-name">Streptococcus thermophilus SP4</span>
+                <button type="button" class="strain-item" data-strain="thermo">
+                  <span>09</span>
+                  <strong>Streptococcus thermophilus SP4</strong>
                 </button>
               </div>
-            </div>
+            </section>
 
-            <div
+            <section
               class="strain-group-panel"
               id="panel-bifido"
-              data-group-panel="bifido"
               role="tabpanel"
               aria-labelledby="tab-bifido"
+              data-group-panel="bifido"
               hidden
             >
-              <div class="strain-panel-heading">
+              <div class="strain-group-heading strain-group-heading--bifido">
                 <span>Bifidobacterias</span>
                 <strong>2 cepas dentro de Vivomixx neo® 9</strong>
               </div>
 
-              <div class="strain-row-list" role="list">
-                <button type="button" class="strain-row" data-strain="breve" role="listitem">
-                  <span class="strain-index">04</span>
-                  <span class="strain-name">Bifidobacterium breve Bbr8</span>
+              <div class="strain-list">
+                <button type="button" class="strain-item strain-item--bifido" data-strain="breve">
+                  <span>04</span>
+                  <strong>Bifidobacterium breve Bbr8</strong>
                 </button>
 
-                <button type="button" class="strain-row" data-strain="bifido-lactis" role="listitem">
-                  <span class="strain-index">05</span>
-                  <span class="strain-name">Bifidobacterium animalis subsp. lactis BLC1</span>
+                <button type="button" class="strain-item strain-item--bifido" data-strain="animalis-lactis">
+                  <span>05</span>
+                  <strong>Bifidobacterium animalis subsp. lactis BLC1</strong>
                 </button>
               </div>
-            </div>
+            </section>
           </div>
 
-          <aside class="strain-detail-card" aria-live="polite" aria-label="Detalle de cepa seleccionada">
-            <span class="strain-category" id="strain-category">Bacteria láctica</span>
+          <aside class="strain-detail" aria-live="polite">
+            <span class="strain-detail-label">Cepa seleccionada</span>
             <h3 id="strain-title">Lacticaseibacillus paracasei IMC 502</h3>
             <p id="strain-description">
               Bacteria láctica incluida dentro de la combinación multicepa de Vivomixx neo® 9.
               Forma parte del conjunto de bacterias vivas de la fórmula.
             </p>
 
-            <dl class="strain-detail-meta">
+            <dl class="strain-meta">
               <div>
                 <dt>Grupo</dt>
-                <dd id="strain-group-name">Bacterias lácticas</dd>
+                <dd id="strain-group">Bacterias lácticas</dd>
               </div>
               <div>
                 <dt>Producto</dt>
@@ -609,10 +604,10 @@
               </div>
             </dl>
 
-            <div class="strain-note">
-              <strong>Nota educativa:</strong>
-              esta información no implica que una cepa individual produzca un efecto clínico específico por sí sola.
-              Vivomixx neo® 9 debe usarse como complemento alimenticio dentro de una rutina responsable.
+            <div class="strain-detail-note">
+              <strong>Nota educativa:</strong> esta información no implica que una cepa individual produzca
+              un efecto clínico específico por sí sola. Vivomixx neo® 9 debe usarse como complemento
+              alimenticio dentro de una rutina responsable.
             </div>
           </aside>
         </div>
