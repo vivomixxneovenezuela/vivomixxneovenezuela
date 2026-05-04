@@ -398,6 +398,179 @@ document.addEventListener("DOMContentLoaded", () => {
     panel.toggleAttribute("hidden", !panel.classList.contains("active"));
   });
 
+  const strainGroupTabs = document.querySelectorAll(".strain-group-tab");
+  const strainGroupPanels = document.querySelectorAll(".strain-group-panel");
+  const strainRows = document.querySelectorAll(".strain-row");
+  const strainTitle = document.querySelector("#strain-title");
+  const strainDescription = document.querySelector("#strain-description");
+  const strainCategory = document.querySelector("#strain-category");
+  const strainGroupName = document.querySelector("#strain-group-name");
+
+  const strainContent = {
+    paracasei: {
+      title: "Lacticaseibacillus paracasei IMC 502",
+      category: "Bacteria láctica",
+      group: "Bacterias lácticas",
+      groupKey: "lactic",
+      description:
+        "Bacteria láctica incluida dentro de la combinación multicepa de Vivomixx neo® 9. Forma parte del conjunto de bacterias vivas de la fórmula.",
+    },
+    rhamnosus501: {
+      title: "Lacticaseibacillus rhamnosus IMC 501",
+      category: "Bacteria láctica",
+      group: "Bacterias lácticas",
+      groupKey: "lactic",
+      description:
+        "Cepa de bacteria láctica presente en Vivomixx neo® 9 como parte de su composición de 9 cepas vivas.",
+    },
+    rhamnosussp1: {
+      title: "Lacticaseibacillus rhamnosus SP1",
+      category: "Bacteria láctica",
+      group: "Bacterias lácticas",
+      groupKey: "lactic",
+      description:
+        "Otra cepa de Lacticaseibacillus rhamnosus incluida en Vivomixx neo® 9. Refuerza el enfoque multicepa de la fórmula.",
+    },
+    breve: {
+      title: "Bifidobacterium breve Bbr8",
+      category: "Bifidobacteria",
+      group: "Bifidobacterias",
+      groupKey: "bifido",
+      description:
+        "Bifidobacteria incluida dentro de la combinación de bacterias vivas de Vivomixx neo® 9.",
+    },
+    "bifido-lactis": {
+      title: "Bifidobacterium animalis subsp. lactis BLC1",
+      category: "Bifidobacteria",
+      group: "Bifidobacterias",
+      groupKey: "bifido",
+      description:
+        "Bifidobacteria que forma parte de la combinación multicepa de Vivomixx neo® 9 junto con bacterias lácticas y otra bifidobacteria.",
+    },
+    acidophilus: {
+      title: "Lactobacillus acidophilus LA1",
+      category: "Bacteria láctica",
+      group: "Bacterias lácticas",
+      groupKey: "lactic",
+      description:
+        "Bacteria láctica incluida en Vivomixx neo® 9 como parte del conjunto de bacterias vivas de la fórmula.",
+    },
+    plantarum: {
+      title: "Lactiplantibacillus plantarum 14D",
+      category: "Bacteria láctica",
+      group: "Bacterias lácticas",
+      groupKey: "lactic",
+      description:
+        "Bacteria láctica presente en Vivomixx neo® 9 dentro de una fórmula multicepa de alta concentración.",
+    },
+    "lactis-sp38": {
+      title: "Lactococcus lactis SP38",
+      category: "Bacteria láctica",
+      group: "Bacterias lácticas",
+      groupKey: "lactic",
+      description:
+        "Bacteria láctica incluida en Vivomixx neo® 9 como parte de su composición de 9 cepas vivas.",
+    },
+    thermo: {
+      title: "Streptococcus thermophilus SP4",
+      category: "Bacteria láctica",
+      group: "Bacterias lácticas",
+      groupKey: "lactic",
+      description:
+        "Bacteria láctica que forma parte de la combinación de 9 cepas vivas de Vivomixx neo® 9.",
+    },
+  };
+
+  function activateStrainGroup(groupKey) {
+    strainGroupTabs.forEach((tab) => {
+      const isActive = tab.dataset.group === groupKey;
+      tab.classList.toggle("active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+    strainGroupPanels.forEach((panel) => {
+      const isActive = panel.dataset.groupPanel === groupKey;
+      panel.classList.toggle("active", isActive);
+      panel.toggleAttribute("hidden", !isActive);
+    });
+  }
+
+  function updateStrain(strainKey, shouldActivateGroup = true) {
+    const content = strainContent[strainKey];
+
+    if (!content || !strainTitle || !strainDescription) return;
+
+    if (shouldActivateGroup) {
+      activateStrainGroup(content.groupKey);
+    }
+
+    strainTitle.textContent = content.title;
+    strainDescription.textContent = content.description;
+
+    if (strainCategory) {
+      strainCategory.textContent = content.category;
+    }
+
+    if (strainGroupName) {
+      strainGroupName.textContent = content.group;
+    }
+
+    strainRows.forEach((row) => {
+      const isActive = row.dataset.strain === strainKey;
+      row.classList.toggle("active", isActive);
+      row.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
+  strainGroupTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const selectedGroup = tab.dataset.group;
+      activateStrainGroup(selectedGroup);
+
+      const firstRow = document.querySelector(`.strain-group-panel[data-group-panel="${selectedGroup}"] .strain-row`);
+
+      if (firstRow) {
+        updateStrain(firstRow.dataset.strain, false);
+      }
+    });
+
+    tab.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+
+      event.preventDefault();
+
+      const tabs = Array.from(strainGroupTabs);
+      const currentIndex = tabs.indexOf(tab);
+      const nextIndex =
+        event.key === "ArrowRight"
+          ? (currentIndex + 1) % tabs.length
+          : (currentIndex - 1 + tabs.length) % tabs.length;
+      const nextTab = tabs[nextIndex];
+
+      nextTab.focus();
+      activateStrainGroup(nextTab.dataset.group);
+
+      const firstRow = document.querySelector(`.strain-group-panel[data-group-panel="${nextTab.dataset.group}"] .strain-row`);
+
+      if (firstRow) {
+        updateStrain(firstRow.dataset.strain, false);
+      }
+    });
+  });
+
+  strainRows.forEach((row) => {
+    row.setAttribute("aria-pressed", String(row.classList.contains("active")));
+
+    row.addEventListener("click", () => {
+      updateStrain(row.dataset.strain);
+    });
+  });
+
+  if (strainRows.length) {
+    updateStrain("paracasei");
+  }
+
   const microButtons = document.querySelectorAll(".micro-chip");
   const microTitle = document.querySelector("#micro-title");
   const microDescription = document.querySelector("#micro-description");
