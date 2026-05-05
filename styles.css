@@ -2987,3 +2987,169 @@ details p {
     opacity: 0.16;
   }
 }
+
+/* ================================
+   Guía de microbiota / Artículos
+================================ */
+
+.article-page {
+  background:
+    radial-gradient(circle at top left, rgba(169, 134, 190, 0.16), transparent 34rem),
+    linear-gradient(180deg, #fffaf7 0%, #ffffff 42%, #f7f8fb 100%);
+  color: var(--color-ink, #1f2a44);
+  min-height: 100vh;
+  padding: 7.5rem 1.25rem 4rem;
+}
+
+.article-hero,
+.article-content,
+.article-grid,
+.article-cta {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-hero {
+  padding: 3rem 0 2rem;
+}
+
+.article-hero h1,
+.article-content h1 {
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  margin: 0 0 1.25rem;
+  color: var(--color-navy, #253251);
+}
+
+.article-hero p,
+.article-content p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(31, 42, 68, 0.78);
+}
+
+.article-content {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(37, 50, 81, 0.08);
+  border-radius: 2rem;
+  box-shadow: 0 24px 70px rgba(37, 50, 81, 0.08);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.article-content h2 {
+  font-size: clamp(1.45rem, 3vw, 2.05rem);
+  line-height: 1.15;
+  margin: 2.5rem 0 0.85rem;
+  color: var(--color-navy, #253251);
+  letter-spacing: -0.02em;
+}
+
+.article-content ol,
+.article-content ul {
+  padding-left: 1.25rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.article-content li {
+  margin: 0.5rem 0;
+  line-height: 1.65;
+  color: rgba(31, 42, 68, 0.82);
+}
+
+.article-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 2rem;
+  color: var(--color-mauve, #9f7ab8);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.article-back:hover {
+  text-decoration: underline;
+}
+
+.article-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin-top: 2rem;
+}
+
+.article-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(37, 50, 81, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 18px 50px rgba(37, 50, 81, 0.07);
+}
+
+.article-card h2 {
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.article-card h2 a {
+  color: var(--color-navy, #253251);
+  text-decoration: none;
+}
+
+.article-card h2 a:hover {
+  color: var(--color-mauve, #9f7ab8);
+}
+
+.article-card p {
+  color: rgba(31, 42, 68, 0.72);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.article-cta {
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(135deg, rgba(169, 134, 190, 0.18), rgba(0, 119, 186, 0.12)),
+    #ffffff;
+  border: 1px solid rgba(37, 50, 81, 0.08);
+}
+
+.article-cta h2 {
+  margin-top: 0;
+  color: var(--color-navy, #253251);
+}
+
+.article-cta p {
+  color: rgba(31, 42, 68, 0.76);
+}
+
+.eyebrow {
+  color: var(--color-mauve, #9f7ab8);
+  font-size: 0.8rem !important;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+@media (min-width: 760px) {
+  .article-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .article-page {
+    padding-top: 8.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-card,
+  .article-back,
+  .article-card h2 a {
+    transition: none;
+  }
+}
