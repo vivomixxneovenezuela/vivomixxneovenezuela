@@ -47,6 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
       b: "rgba(0, 168, 200, 0.14)",
       c: "rgba(111, 190, 68, 0.10)",
     },
+    live: {
+      base: "#fbf6fa",
+      a: "rgba(183, 139, 180, 0.18)",
+      b: "rgba(111, 190, 68, 0.12)",
+      c: "rgba(0, 168, 200, 0.10)",
+    },
     cold: {
       base: "#3d2843",
       a: "rgba(183, 139, 180, 0.28)",
