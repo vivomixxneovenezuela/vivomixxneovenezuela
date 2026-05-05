@@ -2,8 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.vivomixxneovenezuela.com/</loc>
-    <lastmod>2026-05-05</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.vivomixxneovenezuela.com/guia/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vivomixxneovenezuela.com/guia/bacterias-vivas-probioticos/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vivomixxneovenezuela.com/guia/probiotico-refrigerado/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.vivomixxneovenezuela.com/guia/sobres-vs-capsulas/</loc>
+    <priority>0.8</priority>
   </url>
 </urlset>
