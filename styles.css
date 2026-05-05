@@ -2988,6 +2988,7 @@ details p {
   }
 }
 
+
 /* ================================
    Guía de microbiota / Artículos
 ================================ */
@@ -3243,5 +3244,115 @@ details p {
   .article-back,
   .article-card h2 a {
     transition: none;
+  }
+}
+
+
+/* ================================
+   Guía en home
+================================ */
+
+.guide-home {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(169, 134, 190, 0.16), transparent 22rem),
+    linear-gradient(180deg, #ffffff 0%, #fffaf7 100%);
+}
+
+.guide-home-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.guide-home-grid-single {
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guide-home-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border: 1px solid rgba(37, 50, 81, 0.08);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 250, 247, 0.9));
+  box-shadow: 0 18px 55px rgba(37, 50, 81, 0.075);
+}
+
+.guide-home-card::after {
+  content: "";
+  position: absolute;
+  right: -3rem;
+  top: -3rem;
+  width: 8.5rem;
+  height: 8.5rem;
+  border-radius: 999px;
+  background: rgba(169, 134, 190, 0.13);
+  pointer-events: none;
+}
+
+.guide-home-card-soft {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(169, 134, 190, 0.16), transparent 13rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(241, 247, 252, 0.86));
+}
+
+.guide-home-tag {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 0.85rem;
+  color: var(--color-mauve, #9f7ab8);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.guide-home-card h3 {
+  position: relative;
+  margin: 0 0 0.75rem;
+  color: var(--color-navy, #253251);
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.guide-home-card p {
+  position: relative;
+  margin: 0 0 1.25rem;
+  color: rgba(31, 42, 68, 0.74);
+  line-height: 1.7;
+}
+
+.guide-home-link {
+  position: relative;
+  display: inline-flex;
+  color: var(--color-mauve, #9f7ab8);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.guide-home-link:hover {
+  text-decoration: underline;
+}
+
+.guide-home-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 760px) {
+  .guide-home-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .guide-home-grid:not(.guide-home-grid-single) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
