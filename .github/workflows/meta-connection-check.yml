@@ -1,0 +1,66 @@
+name: Validate Meta connection
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate token and discover Instagram account
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          token = os.environ.get("META_ACCESS_TOKEN")
+          if not token:
+              raise SystemExit("META_ACCESS_TOKEN is not configured")
+
+          query = urllib.parse.urlencode({
+              "fields": "id,name,instagram_business_account{id,username}",
+              "access_token": token,
+          })
+          url = "https://graph.facebook.com/me/accounts?" + query
+
+          try:
+              with urllib.request.urlopen(url, timeout=30) as response:
+                  payload = json.load(response)
+          except urllib.error.HTTPError as error:
+              try:
+                  details = json.load(error)
+                  message = details.get("error", {}).get("message", "Meta API request failed")
+              except Exception:
+                  message = "Meta API request failed"
+              raise SystemExit(message)
+
+          connected = []
+          for page in payload.get("data", []):
+              instagram = page.get("instagram_business_account")
+              if instagram:
+                  connected.append({
+                      "page_name": page.get("name"),
+                      "page_id": page.get("id"),
+                      "instagram_id": instagram.get("id"),
+                      "username": instagram.get("username"),
+                  })
+
+          if not connected:
+              raise SystemExit("No linked Instagram business account was returned")
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write("## Meta connection validated\n\n")
+              for item in connected:
+                  summary.write(f"- Facebook Page: {item['page_name']} (`{item['page_id']}`)\n")
+                  summary.write(f"- Instagram: @{item['username']} (`{item['instagram_id']}`)\n")
+
+          print("Meta token is valid and a linked Instagram business account was found.")
+          PY
