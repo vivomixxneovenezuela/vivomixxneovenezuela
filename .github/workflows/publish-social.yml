@@ -1,0 +1,167 @@
+name: Publish social post
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_url:
+        description: Public HTTPS URL for the social image
+        required: true
+        type: string
+      instagram_caption:
+        description: Instagram caption
+        required: true
+        type: string
+      facebook_message:
+        description: Facebook post text
+        required: true
+        type: string
+      platform:
+        description: Platform target
+        required: true
+        default: both
+        type: choice
+        options:
+          - both
+          - instagram
+          - facebook
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate input and publish
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          META_IG_USER_ID: ${{ vars.META_IG_USER_ID }}
+          META_PAGE_ID: ${{ vars.META_PAGE_ID }}
+          IMAGE_URL: ${{ inputs.image_url }}
+          INSTAGRAM_CAPTION: ${{ inputs.instagram_caption }}
+          FACEBOOK_MESSAGE: ${{ inputs.facebook_message }}
+          PLATFORM: ${{ inputs.platform }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          token = os.environ.get("META_ACCESS_TOKEN")
+          ig_user_id = os.environ.get("META_IG_USER_ID")
+          page_id = os.environ.get("META_PAGE_ID")
+          image_url = os.environ.get("IMAGE_URL", "").strip()
+          instagram_caption = os.environ.get("INSTAGRAM_CAPTION", "").strip()
+          facebook_message = os.environ.get("FACEBOOK_MESSAGE", "").strip()
+          platform = os.environ.get("PLATFORM", "both")
+
+          if not token:
+              raise SystemExit("META_ACCESS_TOKEN is not configured")
+          if not image_url.startswith("https://www.vivomixxneovenezuela.com/"):
+              raise SystemExit("image_url must use the Vivomixx website HTTPS domain")
+          if platform not in {"both", "instagram", "facebook"}:
+              raise SystemExit("Invalid platform target")
+          if platform in {"both", "instagram"}:
+              if not ig_user_id:
+                  raise SystemExit("META_IG_USER_ID is not configured")
+              if not instagram_caption:
+                  raise SystemExit("instagram_caption cannot be empty")
+              if len(instagram_caption) > 2200:
+                  raise SystemExit("instagram_caption exceeds Instagram's 2,200-character limit")
+          if platform in {"both", "facebook"}:
+              if not page_id:
+                  raise SystemExit("META_PAGE_ID is not configured")
+              if not facebook_message:
+                  raise SystemExit("facebook_message cannot be empty")
+
+          def graph_post(path, values, access_token=token):
+              payload = urllib.parse.urlencode({**values, "access_token": access_token}).encode()
+              request = urllib.request.Request(
+                  "https://graph.facebook.com/" + path.lstrip("/"),
+                  data=payload,
+                  method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=60) as response:
+                      return json.load(response)
+              except urllib.error.HTTPError as error:
+                  try:
+                      details = json.load(error)
+                      message = details.get("error", {}).get("message", "Meta API request failed")
+                  except Exception:
+                      message = "Meta API request failed"
+                  raise SystemExit(message)
+
+          def graph_get(path, fields, access_token=token):
+              query = urllib.parse.urlencode({"fields": fields, "access_token": access_token})
+              try:
+                  with urllib.request.urlopen(
+                      "https://graph.facebook.com/" + path.lstrip("/") + "?" + query,
+                      timeout=30,
+                  ) as response:
+                      return json.load(response)
+              except urllib.error.HTTPError as error:
+                  try:
+                      details = json.load(error)
+                      message = details.get("error", {}).get("message", "Meta API request failed")
+                  except Exception:
+                      message = "Meta API request failed"
+                  raise SystemExit(message)
+
+          results = []
+
+          if platform in {"both", "instagram"}:
+              container = graph_post(
+                  f"/{ig_user_id}/media",
+                  {"image_url": image_url, "caption": instagram_caption},
+              )
+              creation_id = container.get("id")
+              if not creation_id:
+                  raise SystemExit("Meta did not return an Instagram media container ID")
+
+              for _ in range(12):
+                  status = graph_get(f"/{creation_id}", "status_code,status")
+                  status_code = status.get("status_code")
+                  if status_code == "FINISHED":
+                      break
+                  if status_code == "ERROR":
+                      raise SystemExit(status.get("status", "Meta could not process the Instagram image"))
+                  time.sleep(5)
+              else:
+                  raise SystemExit("Timed out while Meta processed the Instagram image")
+
+              published = graph_post(
+                  f"/{ig_user_id}/media_publish",
+                  {"creation_id": creation_id},
+              )
+              instagram_media_id = published.get("id")
+              if not instagram_media_id:
+                  raise SystemExit("Meta did not return a published Instagram media ID")
+              results.append(("Instagram", instagram_media_id))
+
+          if platform in {"both", "facebook"}:
+              page = graph_get(f"/{page_id}", "access_token,name")
+              page_access_token = page.get("access_token")
+              if not page_access_token:
+                  raise SystemExit("Meta did not return a Page access token")
+              published = graph_post(
+                  f"/{page_id}/photos",
+                  {"url": image_url, "message": facebook_message, "published": "true"},
+                  access_token=page_access_token,
+              )
+              facebook_post_id = published.get("post_id") or published.get("id")
+              if not facebook_post_id:
+                  raise SystemExit("Meta did not return a published Facebook post ID")
+              results.append(("Facebook", facebook_post_id))
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write("## Social publication completed\n\n")
+              for network, media_id in results:
+                  summary.write(f"- {network}: `{media_id}`\n")
+              summary.write(f"- Image: {image_url}\n")
+
+          print("Social publication completed successfully.")
+          PY
