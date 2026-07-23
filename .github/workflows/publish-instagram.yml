@@ -1,0 +1,121 @@
+name: Publish Instagram post
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_url:
+        description: Public HTTPS URL for the Instagram image
+        required: true
+        type: string
+      caption:
+        description: Instagram caption
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate input and publish to Instagram
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          META_IG_USER_ID: ${{ vars.META_IG_USER_ID }}
+          IMAGE_URL: ${{ inputs.image_url }}
+          CAPTION: ${{ inputs.caption }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          token = os.environ.get("META_ACCESS_TOKEN")
+          ig_user_id = os.environ.get("META_IG_USER_ID")
+          image_url = os.environ.get("IMAGE_URL", "").strip()
+          caption = os.environ.get("CAPTION", "").strip()
+
+          if not token:
+              raise SystemExit("META_ACCESS_TOKEN is not configured")
+          if not ig_user_id:
+              raise SystemExit("META_IG_USER_ID is not configured")
+          if not image_url.startswith("https://www.vivomixxneovenezuela.com/"):
+              raise SystemExit("image_url must use the Vivomixx website HTTPS domain")
+          if not caption:
+              raise SystemExit("caption cannot be empty")
+          if len(caption) > 2200:
+              raise SystemExit("caption exceeds Instagram's 2,200-character limit")
+
+          def graph_post(path, values):
+              payload = urllib.parse.urlencode({**values, "access_token": token}).encode()
+              request = urllib.request.Request(
+                  "https://graph.facebook.com/" + path.lstrip("/"),
+                  data=payload,
+                  method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=60) as response:
+                      return json.load(response)
+              except urllib.error.HTTPError as error:
+                  try:
+                      details = json.load(error)
+                      message = details.get("error", {}).get("message", "Meta API request failed")
+                  except Exception:
+                      message = "Meta API request failed"
+                  raise SystemExit(message)
+
+          def graph_get(path, fields):
+              query = urllib.parse.urlencode({"fields": fields, "access_token": token})
+              try:
+                  with urllib.request.urlopen(
+                      "https://graph.facebook.com/" + path.lstrip("/") + "?" + query,
+                      timeout=30,
+                  ) as response:
+                      return json.load(response)
+              except urllib.error.HTTPError as error:
+                  try:
+                      details = json.load(error)
+                      message = details.get("error", {}).get("message", "Meta API request failed")
+                  except Exception:
+                      message = "Meta API request failed"
+                  raise SystemExit(message)
+
+          container = graph_post(
+              f"/{ig_user_id}/media",
+              {"image_url": image_url, "caption": caption},
+          )
+          creation_id = container.get("id")
+          if not creation_id:
+              raise SystemExit("Meta did not return a media container ID")
+
+          for _ in range(12):
+              status = graph_get(f"/{creation_id}", "status_code,status")
+              status_code = status.get("status_code")
+              if status_code == "FINISHED":
+                  break
+              if status_code == "ERROR":
+                  raise SystemExit(status.get("status", "Meta could not process the image"))
+              time.sleep(5)
+          else:
+              raise SystemExit("Timed out while Meta processed the image")
+
+          published = graph_post(
+              f"/{ig_user_id}/media_publish",
+              {"creation_id": creation_id},
+          )
+          media_id = published.get("id")
+          if not media_id:
+              raise SystemExit("Meta did not return a published media ID")
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write("## Instagram post published\n\n")
+              summary.write(f"- Account: `{ig_user_id}`\n")
+              summary.write(f"- Media ID: `{media_id}`\n")
+              summary.write(f"- Image: {image_url}\n")
+
+          print("Instagram post published successfully.")
+          PY
