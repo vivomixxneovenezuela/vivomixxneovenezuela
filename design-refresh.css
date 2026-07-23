@@ -59,6 +59,52 @@ body {
   background: var(--refresh-plum);
   box-shadow: 0 9px 22px rgba(79,51,91,.22);
 }
+.nav-social,.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-social { margin-left: 3px; }
+.nav-menu .social-icon,.footer .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+}
+.nav-menu .social-icon {
+  color: var(--refresh-plum);
+  background: #f1e8f0;
+}
+.nav-menu .social-icon:hover,
+.nav-menu .social-icon:focus-visible {
+  color: #fff;
+  background: var(--refresh-plum);
+}
+.social-icon svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+.social-icon:focus-visible {
+  outline: 3px solid rgba(141,99,143,.35);
+  outline-offset: 2px;
+}
+.footer-social { margin-bottom: 13px; }
+.footer .footer-social .social-icon {
+  color: #fff;
+  background: rgba(255,255,255,.12);
+}
+.footer .footer-social .social-icon:hover,
+.footer .footer-social .social-icon:focus-visible {
+  color: #18283d;
+  background: #fff;
+}
 
 /* Hero: same message and assets, stronger hierarchy. */
 .hero {
@@ -321,6 +367,18 @@ body {
   }
   .nav-menu a { width: 100%; padding: 12px 14px; font-size: 15px; }
   .nav-menu .nav-cta { margin-top: 8px; text-align: center; }
+  .nav-social {
+    justify-content: center;
+    gap: 12px;
+    margin: 10px 0 0;
+  }
+  .nav-menu .social-icon {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+    min-height: 46px;
+    padding: 0;
+  }
   .hero { min-height: auto; padding: 112px 0 56px; }
   .hero-grid { gap: 20px; }
   .hero-copy h1 { font-size: clamp(46px,11vw,65px); }
