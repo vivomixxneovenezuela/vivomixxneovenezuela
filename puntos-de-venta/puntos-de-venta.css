@@ -202,6 +202,18 @@
   z-index: 1;
 }
 
+.sales-map-frame .leaflet-container img.leaflet-tile {
+  width: 256px !important;
+  max-width: none !important;
+  height: 256px !important;
+  max-height: none !important;
+}
+
+.sales-map-frame .leaflet-container img.leaflet-marker-icon,
+.sales-map-frame .leaflet-container img.leaflet-marker-shadow {
+  max-width: none !important;
+}
+
 .sales-location-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
