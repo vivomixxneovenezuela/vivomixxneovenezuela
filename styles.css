@@ -2303,6 +2303,16 @@ details p {
   justify-content: flex-end;
 }
 
+.whatsapp-button {
+  gap: 10px;
+}
+
+.whatsapp-icon {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+}
+
 /* FLOATING CONTACT */
 
 .floating-contact {
@@ -2321,6 +2331,7 @@ details p {
   background: linear-gradient(135deg, var(--mauve-700), var(--blue-700));
   box-shadow: 0 18px 38px rgba(95, 63, 103, 0.24);
   font-weight: 950;
+  gap: 9px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -3496,4 +3507,3 @@ details p {
     justify-content: center;
   }
 }
-
