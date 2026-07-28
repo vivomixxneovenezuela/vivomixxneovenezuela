@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3ynh7hgypYu7wMXVXngN+PZB0rtfE=" crossorigin="" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="puntos-de-venta.css" />
 </head>
@@ -43,7 +44,7 @@
         <div>
           <p class="sales-kicker">Disponibilidad en Venezuela</p>
           <h1>Encuentra un punto de venta de Vivomixx neo®</h1>
-          <p class="sales-lead">Consulta el mapa, identifica la farmacia disponible y abre la ubicación para planificar tu visita. Iremos incorporando nuevos puntos de venta en esta misma página.</p>
+          <p class="sales-lead">Consulta el mapa, identifica la farmacia que te conviene y abre su ubicación para planificar tu visita.</p>
           <div class="sales-actions">
             <a class="sales-button sales-button-primary" href="#mapa">Ver mapa</a>
             <a class="sales-button sales-button-secondary" href="https://wa.me/584126651980?text=Hola%2C%20quisiera%20consultar%20la%20disponibilidad%20de%20Vivomixx%20neo%20en%20Venezuela." target="_blank" rel="noopener noreferrer">
@@ -51,11 +52,6 @@
               Consultar por WhatsApp
             </a>
           </div>
-        </div>
-        <div class="sales-hero-note" aria-label="Información importante">
-          <span>01</span>
-          <strong>punto verificado</strong>
-          <p>Confirma existencias antes de trasladarte, ya que la disponibilidad puede variar.</p>
         </div>
       </div>
     </section>
@@ -67,31 +63,51 @@
             <p class="sales-kicker">Mapa de farmacias</p>
             <h2 id="mapa-title">Puntos de venta disponibles</h2>
           </div>
-          <p>Actualmente mostramos una ubicación única. La estructura está preparada para añadir nuevas farmacias sin cambiar la experiencia de búsqueda.</p>
+          <p>Selecciona una ubicación en el mapa o abre su ficha para consultar la ruta en Google Maps.</p>
         </div>
 
         <div class="sales-map-layout">
           <div class="sales-map-frame">
-            <iframe
-              title="Mapa de Farmacia City Salud CCS CA"
-              src="https://www.google.com/maps?q=10.4954363,-66.8496404&amp;z=16&amp;output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              allowfullscreen
-            ></iframe>
+            <div id="sales-map" role="region" aria-label="Mapa con dos puntos de venta de Vivomixx neo en Caracas"></div>
           </div>
 
-          <article class="sales-location-card">
-            <div class="sales-location-top">
-              <span class="sales-pin" aria-hidden="true">1</span>
-              <div>
-                <p class="sales-city">Caracas</p>
-                <h3>Farmacia City Salud CCS CA</h3>
+          <div class="sales-location-grid">
+            <article class="sales-location-card">
+              <div class="sales-location-top">
+                <span class="sales-pin" aria-hidden="true">1</span>
+                <div>
+                  <p class="sales-city">Caracas</p>
+                  <h3>Farmacia City Salud CCS CA</h3>
+                </div>
               </div>
-            </div>
-            <p>Abre la ficha de Google Maps para consultar la dirección, la ruta y la información vigente del establecimiento.</p>
-            <a class="sales-button sales-button-primary sales-button-full" href="https://www.google.com/maps/place/Farmacia+City+Salud+CCS+CA/@10.4954363,-66.8496404,1118m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8c2a593a29e8b341:0x8d61a27085d44d93!8m2!3d10.4954363!4d-66.8496404!16s%2Fg%2F11p793kxw5?entry=ttu" target="_blank" rel="noopener noreferrer">Abrir en Google Maps ↗</a>
-          </article>
+              <p>Consulta la ruta y la información vigente del establecimiento.</p>
+              <div class="sales-card-actions">
+                <a class="sales-button sales-button-primary sales-button-full" href="https://www.google.com/maps/place/Farmacia+City+Salud+CCS+CA/@10.4954363,-66.8496404,1118m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8c2a593a29e8b341:0x8d61a27085d44d93!8m2!3d10.4954363!4d-66.8496404!16s%2Fg%2F11p793kxw5?entry=ttu" target="_blank" rel="noopener noreferrer">Abrir en Google Maps ↗</a>
+                <a class="sales-button sales-button-secondary sales-button-full" href="https://wa.me/584143332232?text=Hola%2C%20quisiera%20consultar%20la%20disponibilidad%20de%20Vivomixx%20neo." target="_blank" rel="noopener noreferrer">
+                  <img src="../assets/whatsapp.svg" width="22" height="22" alt="" aria-hidden="true" />
+                  WhatsApp de la farmacia
+                </a>
+              </div>
+            </article>
+
+            <article class="sales-location-card">
+              <div class="sales-location-top">
+                <span class="sales-pin" aria-hidden="true">2</span>
+                <div>
+                  <p class="sales-city">Caracas</p>
+                  <h3>Farmacittà Express</h3>
+                </div>
+              </div>
+              <p>Consulta la ruta y la información vigente del establecimiento.</p>
+              <div class="sales-card-actions">
+                <a class="sales-button sales-button-primary sales-button-full" href="https://www.google.com/maps/place/Cine+Citta/@10.4867565,-66.8745941,1127m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8c2a58e68916500b:0x69e16809a3e747f0!8m2!3d10.4867565!4d-66.8745941!16s%2Fg%2F11cjpc9y9w?entry=ttu" target="_blank" rel="noopener noreferrer">Abrir en Google Maps ↗</a>
+                <a class="sales-button sales-button-secondary sales-button-full" href="https://wa.me/584129981253?text=Hola%2C%20quisiera%20consultar%20la%20disponibilidad%20de%20Vivomixx%20neo." target="_blank" rel="noopener noreferrer">
+                  <img src="../assets/whatsapp.svg" width="22" height="22" alt="" aria-hidden="true" />
+                  WhatsApp de la farmacia
+                </a>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -105,7 +121,7 @@
         </div>
         <a class="sales-button sales-button-light" href="https://wa.me/584126651980?text=Hola%2C%20quisiera%20consultar%20la%20disponibilidad%20de%20Vivomixx%20neo%20en%20Venezuela." target="_blank" rel="noopener noreferrer">
           <img src="../assets/whatsapp.svg" width="22" height="22" alt="" aria-hidden="true" />
-          WhatsApp · +58 412-6651980
+          <span>WhatsApp · +58 412-6651980</span>
         </a>
       </div>
     </section>
@@ -146,9 +162,23 @@
           "latitude": 10.4954363,
           "longitude": -66.8496404
         }
+      },
+      {
+        "@type": "Pharmacy",
+        "@id": "https://www.vivomixxneovenezuela.com/puntos-de-venta/#farmacitta-express",
+        "name": "Farmacittà Express",
+        "telephone": "+58 412-9981253",
+        "hasMap": "https://www.google.com/maps/place/Cine+Citta/@10.4867565,-66.8745941,1127m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8c2a58e68916500b:0x69e16809a3e747f0!8m2!3d10.4867565!4d-66.8745941!16s%2Fg%2F11cjpc9y9w",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 10.4867565,
+          "longitude": -66.8745941
+        }
       }
     ]
   }
   </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="puntos-de-venta.js"></script>
 </body>
 </html>
