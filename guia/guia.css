@@ -150,6 +150,16 @@ html {
   border-radius: 999px;
 }
 
+.guide-whatsapp-button {
+  gap: 10px;
+}
+
+.guide-whatsapp-button img {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+}
+
 .guide-menu-toggle {
   display: none;
   align-items: center;
