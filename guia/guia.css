@@ -516,57 +516,20 @@ html {
   position: relative;
   min-height: 370px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 70% 25%, rgba(255,255,255,.35), transparent 24%),
-    linear-gradient(145deg, #805889, #aa7daa 58%, #638b84);
+  background: #eee7ee;
 }
 
-.guide-feature-ring {
+.guide-feature-art picture,
+.guide-feature-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.guide-feature-art img {
   position: absolute;
-  width: 310px;
-  height: 310px;
-  top: 50%;
-  left: 50%;
-  border: 1px solid rgba(255,255,255,.48);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 55px rgba(255,255,255,.08), 0 0 0 105px rgba(255,255,255,.04);
-}
-
-.guide-feature-pill,
-.guide-feature-word,
-.guide-feature-plus {
-  position: absolute;
-  color: var(--guide-white);
-}
-
-.guide-feature-pill {
-  top: 60px;
-  left: 54px;
-  padding: 10px 14px;
-  border: 1px solid rgba(255,255,255,.5);
-  border-radius: 999px;
-  font-size: .75rem;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-.guide-feature-plus {
-  top: 50%;
-  left: 50%;
-  font-size: 10rem;
-  font-weight: 300;
-  line-height: 1;
-  transform: translate(-50%, -52%);
-}
-
-.guide-feature-word {
-  right: 44px;
-  bottom: 44px;
-  font-family: "Manrope", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 800;
+  inset: 0;
+  object-fit: cover;
 }
 
 .guide-library {
@@ -686,6 +649,31 @@ html {
   transform: translateY(-5px);
   border-color: rgba(125, 86, 132, .26);
   box-shadow: 0 18px 48px rgba(61, 48, 64, .1);
+}
+
+.guide-card-media {
+  display: block;
+  aspect-ratio: 16 / 9;
+  margin: -16px -16px 22px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #eee7ee;
+}
+
+.guide-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+
+.guide-content-card:hover .guide-card-media img {
+  transform: scale(1.025);
+}
+
+.guide-card-media + .guide-card-top ~ h3 {
+  margin-top: 26px;
 }
 
 .guide-card-soft {
