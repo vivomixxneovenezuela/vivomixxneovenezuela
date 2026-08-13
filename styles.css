@@ -3124,6 +3124,29 @@ details p {
   color: var(--color-navy, #253251);
 }
 
+/* Enlaces editoriales: visibles dentro del texto, sin afectar navegación ni CTA. */
+.article-content :is(p, li) > a:not(.btn) {
+  color: #76507f;
+  font-weight: 700;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(118, 80, 127, 0.52);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.18em;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+.article-content :is(p, li) > a:not(.btn):hover {
+  color: #54375c;
+  text-decoration-color: currentColor;
+}
+
+.article-content :is(p, li) > a:not(.btn):focus-visible {
+  color: #54375c;
+  outline: 3px solid rgba(169, 134, 190, 0.38);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .article-back {
   display: inline-flex;
   align-items: center;
@@ -3272,7 +3295,8 @@ details p {
 @media (prefers-reduced-motion: reduce) {
   .article-card,
   .article-back,
-  .article-card h2 a {
+  .article-card h2 a,
+  .article-content :is(p, li) > a:not(.btn) {
     transition: none;
   }
 }
