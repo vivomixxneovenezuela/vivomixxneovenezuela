@@ -45,3 +45,10 @@ Estas instrucciones son obligatorias para cualquier tarea que publique contenido
 - Evitar ciclos de mensajes sobre el mismo bloqueo.
 - Comunicar únicamente la acción concreta que debe realizar el usuario cuando el sandbox impida el push.
 - No afirmar que algo está publicado antes de verificar producción.
+## Publicación desde el navegador (26 de octubre de 2026)
+
+- Cuando el usuario solicite GitHub en el navegador, usar la sesión autenticada y una rama `agent/` desde `main`; no depender del token local del Mac ni de los permisos de escritura del conector.
+- Descargar o leer la fuente vigente desde GitHub y aplicar únicamente los archivos de la actualización. Conservar sus rutas al cargarlos; los archivos de una carpeta se cargan en esa misma carpeta del repositorio.
+- Incluir artículo, imágenes, fuentes descargables, índice de `/guia/`, tres recientes de la home, enlaces bidireccionales y sitemap.
+- Revisar la PR completa, fusionar mediante squash, eliminar la rama y esperar el éxito del despliegue de Pages antes de verificar la URL pública.
+- Usar el inicio de sesión seguro del navegador y, si GitHub lo exige, esperar la aprobación del usuario en GitHub Mobile. No pedir contraseñas ni códigos por chat.
